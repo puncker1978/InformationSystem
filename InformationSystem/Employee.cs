@@ -4,8 +4,7 @@ using System.Text;
 
 namespace InformationSystem
 {
-    internal class Organization
+    internal class Employee
     {
-        
     }
 }
