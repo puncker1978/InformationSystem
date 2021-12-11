@@ -106,6 +106,26 @@ namespace InformationSystem
             }
         }
 
+        /// <summary>
+        /// Метод поиска сотрудника в списке сотрудников отдела. Возвращает экземпляр класса
+        /// Employee. Если сотрудник не найден в списке сотрудников данного класса, возвращает null.
+        /// </summary>
+        /// <param name="employee">Сотрудник для поиска</param>
+        /// <returns></returns>
+        internal Employee FindEmployee(Employee employee)
+        {
+            Employee emp = null;
+            int n = Employees.Count;
+            for(int i = 0; i < n; i++)
+            {
+                if(Employees[i] == employee)
+                {
+                    emp = Employees[i];
+                    break;
+                }
+            }
+            return emp;
+        }
         #endregion
     }
 }

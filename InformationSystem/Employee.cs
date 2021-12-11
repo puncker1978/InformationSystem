@@ -116,5 +116,12 @@ namespace InformationSystem
             this.Total = salary * this.Projects;
         }
         #endregion
+
+        #region Методы
+        internal void EditEmployee()
+        {
+
+        }
+        #endregion
     }
 }
