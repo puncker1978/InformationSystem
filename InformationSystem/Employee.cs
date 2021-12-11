@@ -58,37 +58,37 @@ namespace InformationSystem
         /// <summary>
         /// Уникальный идентификационный номер сотрудника
         /// </summary>
-        public int Id { get => id; set => id = value; }
+        internal int Id { get => id; set => id = value; }
 
         /// <summary>
         /// Фамилия сотрудника
         /// </summary>
-        public string SecondName { get => secondName; set => secondName = value; }
+        internal string SecondName { get => secondName; set => secondName = value; }
 
         /// <summary>
         /// Имя сотрудника
         /// </summary>
-        public string FirstName { get => firstName; set => firstName = value; }
+        internal string FirstName { get => firstName; set => firstName = value; }
 
         /// <summary>
         /// Возраст сотрудника
         /// </summary>
-        public int Age { get => age; set => age = value; }
+        internal int Age { get => age; set => age = value; }
 
         /// <summary>
         /// Номер отдела, к которому прикреплён сотрудник
         /// </summary>
-        public int IdDepartment { get => idDepartment; set => idDepartment = value; }
+        internal int IdDepartment { get => idDepartment; set => idDepartment = value; }
 
         /// <summary>
         /// Количество проектов, закрепленных за сотрудником
         /// </summary>
-        public int Projects { get => projects; set => projects = value; }
+        internal int Projects { get => projects; set => projects = value; }
 
         /// <summary>
         /// Итоговая заработная плата. Расчитывается как произведение количества проектов на ставку заработной платы.
         /// </summary>
-        public int Total { get => total; set => total = value; }
+        internal int Total { get => total; set => total = value; }
 
 
         #endregion
