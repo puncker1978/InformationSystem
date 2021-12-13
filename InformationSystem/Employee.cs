@@ -10,18 +10,14 @@ namespace InformationSystem
         /// <summary>
         /// Ставка заработной платы труда на 1 проект
         /// </summary>
-        private int salary;
-        #endregion
-
-        #region Статические поля
-        private static int _id;
+        private readonly int salary = 1000;
         #endregion
 
         #region Поля
         /// <summary>
         /// Уникальный идентификационный номер сотрудника
         /// </summary>
-        private int id;
+        private Guid id;
 
         /// <summary>
         /// Фамилия сотрудника
@@ -41,7 +37,7 @@ namespace InformationSystem
         /// <summary>
         /// Номер отдела, к которому прикреплён сотрудник
         /// </summary>
-        private int idDepartment;
+        private Guid idDepartment;
 
         /// <summary>
         /// Количество проектов, закрепленных за сотрудником
@@ -58,7 +54,7 @@ namespace InformationSystem
         /// <summary>
         /// Уникальный идентификационный номер сотрудника
         /// </summary>
-        internal int Id { get => id; set => id = value; }
+        internal Guid Id { get => id; set => id = value; }
 
         /// <summary>
         /// Фамилия сотрудника
@@ -78,7 +74,7 @@ namespace InformationSystem
         /// <summary>
         /// Номер отдела, к которому прикреплён сотрудник
         /// </summary>
-        internal int IdDepartment { get => idDepartment; set => idDepartment = value; }
+        internal Guid IdDepartment { get => idDepartment; set => idDepartment = value; }
 
         /// <summary>
         /// Количество проектов, закрепленных за сотрудником
@@ -105,13 +101,12 @@ namespace InformationSystem
         /// <param name="age">Возраст сотрудника</param>
         /// <param name="idDepartment">Номер отдела, к которому прикреплён сотрудник</param>
         /// <param name="projects">Количество проектов, закрепленных за сотрудником</param>
-        internal Employee(string secondName, string firstName, int age, int idDepartment, int projects)
+        internal Employee(string secondName, string firstName, int age, int projects)
         {
-            this.Id = ++_id;
+            this.Id = Guid.NewGuid();
             this.SecondName = secondName;
             this.FirstName = firstName;
             this.Age = age;
-            this.IdDepartment = idDepartment;
             this.Projects = projects;
             this.Total = salary * this.Projects;
         }

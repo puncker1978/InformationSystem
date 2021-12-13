@@ -81,6 +81,8 @@ namespace InformationSystem
         #endregion
         static void Main(string[] args)
         {
+            Guid guid = Guid.NewGuid();
+            Console.WriteLine(guid);
             Console.ReadKey();
         }
     }
