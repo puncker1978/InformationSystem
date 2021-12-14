@@ -6,16 +6,19 @@ namespace InformationSystem
 {
     internal class Organization
     {
+        #region Приватные коллекции
         /// <summary>
         /// Инициализация списка отделов
         /// </summary>
-        List<Department> departments = new List<Department>();
+        private List<Department> departments = new List<Department>();
 
         /// <summary>
         /// Инициализация списка сотрудников
         /// </summary>
-        List<Employee> employees = new List<Employee>();
+        private List<Employee> employees = new List<Employee>();
+        #endregion
 
+        #region Свойства для коллекций
         /// <summary>
         /// Инициализация списка отделов
         /// </summary>
@@ -25,19 +28,28 @@ namespace InformationSystem
         /// Инициализация списка сотрудников
         /// </summary>
         internal List<Employee> Employees { get => employees; set => employees = value; }
+        #endregion
 
+        #region Методы
         /// <summary>
         /// Метод добавления нового отдела к списку всех отделов
         /// </summary>
         /// <param name="department"></param>
         internal void AddDepartmentToDepartments(Department department)
         {
-            departments.Add(department);
+            Departments.Add(department);
         }
 
+        /// <summary>
+        /// Метод присваивает каждому сотруднику отдела
+        /// уникальный идентификационный номер отдела
+        /// </summary>
+        /// <param name="department"></param>
+        /// <param name="employee"></param>
         internal void AddEmployeeToDepartment(Department department, Employee employee)
         {
             employee.IdDepartment = department.Id;
         }
+        #endregion
     }
 }

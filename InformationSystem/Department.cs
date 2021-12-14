@@ -7,7 +7,6 @@ namespace InformationSystem
     internal class Department
     {
         #region Поля
-        private static int _contingent; 
 
         /// <summary>
         /// Уникальный идентификационный номер отдела
@@ -68,7 +67,10 @@ namespace InformationSystem
         #endregion
 
         #region Методы
-
+        public override string ToString()
+        {
+            return $"{this.Id}\t{this.DepartmentName}";
+        }
         #endregion
     }
 }

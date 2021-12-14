@@ -85,21 +85,17 @@ namespace InformationSystem
         /// Итоговая заработная плата. Расчитывается как произведение количества проектов на ставку заработной платы.
         /// </summary>
         internal int Total { get => total; set => total = value; }
-
-
         #endregion
 
         #region Конструкторы
         /// <summary>
         /// Конструктор для создания сотрудника. Конструктор инициализирует поля: secondName,
-        /// firstName, age, idDepartment и projects. Cтатическое поле _id, уваличенное на единицу, присваивается
-        ///  полю id. Поле total (итоговая заработная плата) расчитывается как произведение количества
+        /// firstName, age и projects. Поле total (итоговая заработная плата) расчитывается как произведение количества
         ///  проектов сотрудника projects на ставку salary.
         /// </summary>
         /// <param name="secondName">Фамилия сотрудника</param>
         /// <param name="firstName">Имя сотрудника</param>
         /// <param name="age">Возраст сотрудника</param>
-        /// <param name="idDepartment">Номер отдела, к которому прикреплён сотрудник</param>
         /// <param name="projects">Количество проектов, закрепленных за сотрудником</param>
         internal Employee(string secondName, string firstName, int age, int projects)
         {
@@ -113,9 +109,10 @@ namespace InformationSystem
         #endregion
 
         #region Методы
-        internal void EditEmployee()
+        public override string ToString()
         {
-
+            return $"{this.SecondName}\t{this.FirstName}\t{this.Id}\t" +
+                $"{this.IdDepartment}";
         }
         #endregion
     }

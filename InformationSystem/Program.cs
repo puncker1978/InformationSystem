@@ -81,8 +81,13 @@ namespace InformationSystem
         #endregion
         static void Main(string[] args)
         {
-            Guid guid = Guid.NewGuid();
-            Console.WriteLine(guid);
+            Employee emp = new Employee("Фамилия 1", "Имя 1", 34, 1);
+            Department dep = new Department("Отдел 1", new DateTime(2021, 11, 7));
+            Organization org = new Organization();
+            org.AddEmployeeToDepartment(dep, emp);
+            Console.WriteLine(dep);
+            Console.WriteLine(emp);
+            org.AddDepartmentToDepartments(dep);
             Console.ReadKey();
         }
     }
