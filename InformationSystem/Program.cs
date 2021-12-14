@@ -79,15 +79,47 @@ namespace InformationSystem
         ///  2   Имя_2     Фамилия_2          21         Отдел_2            20000                      3 
         ///  5   Имя_5     Фамилия_5          22         Отдел_2            20000                      3 
         #endregion
+        
+        //Статический метод вычисления номера пары неотрицательных
+        //целых чисел (Канторовская нумерация пар)
+        static int KantorPairs(int x, int y)
+        {
+            return (x + y) * (x + y + 1) / 2;
+        }
         static void Main(string[] args)
         {
-            Employee emp = new Employee("Фамилия 1", "Имя 1", 34, 1);
-            Department dep = new Department("Отдел 1", new DateTime(2021, 11, 7));
-            Organization org = new Organization();
-            org.AddEmployeeToDepartment(dep, emp);
-            Console.WriteLine(dep);
-            Console.WriteLine(emp);
-            org.AddDepartmentToDepartments(dep);
+            //Создали экземпляр класса Organization
+            Organization organization = new Organization();
+
+            //Создали экземпляр класа Random
+            Random rnd = new Random();
+            int i , j = 0;
+
+            //Создадим, для примера, 20 сотрудников и
+            //4 отдела. И распределим по 5 сотрудников в
+            //каждый отел.
+            for (i = 0; i < 4; i++)
+            {
+                //Инициализация экземпляра класса Department
+                Department department = new Department($"Отдел {KantorPairs(i,j)}",
+                    new DateTime(2021, rnd.Next(1,12), rnd.Next(1,28)));
+
+                //Добавляем инициализированный отдел в список всех отделов
+                organization.AddDepartmentToDepartments(department);
+                for (j = 0; j < 5; j++)
+                {
+                    //Инициализация экземпляра класса Employee
+                    Employee employee = new Employee($"Фамилия {KantorPairs(i,j)}",
+                        $"Имя {KantorPairs(i,j)}", rnd.Next(18, 70), rnd.Next(1, 3));
+                    
+                    //Добавляем сотрудника в список всех сотрудников
+                    organization.AddEmployeeToEmployees(employee);
+
+                    //Добавляем сотрудника в отдел
+                    organization.AddEmployeeToDepartment(department, employee);
+                }
+            }
+            Console.WriteLine(organization);
             Console.ReadKey();
         }
     }

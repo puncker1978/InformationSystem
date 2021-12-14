@@ -50,6 +50,27 @@ namespace InformationSystem
         {
             employee.IdDepartment = department.Id;
         }
+
+        internal void AddEmployeeToEmployees(Employee employee)
+        {
+            employees.Add(employee);
+        }
+
+        public override string ToString()
+        {
+            string str = "";
+            foreach(Department department in departments)
+            {
+                foreach(Employee employee in employees)
+                {
+                    str += $"{employee.Id}\t{employee.FirstName}\t" +
+                        $"{employee.SecondName}\t{employee.Age}\t" +
+                        $"{department.DepartmentName}\t" +
+                        $"{employee.Total}\t{employee.Projects}\n";
+                }
+            }
+            return str;
+        }
         #endregion
     }
 }
