@@ -58,15 +58,18 @@ namespace InformationSystem
 
         public override string ToString()
         {
-            string str = "";
-            foreach(Department department in departments)
+            string str = $"Id " + "Имя " + "Фамилия " + "Возраст " + "Отдел " + "Зарплата " + "Кол-во проектов \n";
+            foreach(Department department in Departments)
             {
-                foreach(Employee employee in employees)
+                foreach (Employee employee in Employees)
                 {
-                    str += $"{employee.Id}\t{employee.FirstName}\t" +
+                    if (department.Id == employee.IdDepartment)
+                    {
+                        str += $"{employee.Id}\t{employee.FirstName}\t" +
                         $"{employee.SecondName}\t{employee.Age}\t" +
                         $"{department.DepartmentName}\t" +
                         $"{employee.Total}\t{employee.Projects}\n";
+                    }
                 }
             }
             return str;
