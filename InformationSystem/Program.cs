@@ -122,7 +122,8 @@ namespace InformationSystem
                     //Console.WriteLine($"{i}\t{j}\t{KantorPairs(i,j)}");
                 }
             }
-            Console.WriteLine(organization);
+            //Console.WriteLine(organization);
+            organization.PrintListEmployee();
             Console.ReadKey();
         }
     }

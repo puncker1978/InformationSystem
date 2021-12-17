@@ -49,6 +49,7 @@ namespace InformationSystem
         internal void AddEmployeeToDepartment(Department department, Employee employee)
         {
             employee.IdDepartment = department.Id;
+            department.Contingent++;
         }
 
         internal void AddEmployeeToEmployees(Employee employee)
@@ -56,23 +57,42 @@ namespace InformationSystem
             employees.Add(employee);
         }
 
-        public override string ToString()
+        //public override string ToString()
+        //{
+        //    string str = $"Id " + "Имя " + "Фамилия " + "Возраст " + "Отдел " + "Зарплата " + "Кол-во проектов \n";
+        //    foreach(Department department in Departments)
+        //    {
+        //        foreach (Employee employee in Employees)
+        //        {
+        //            if (department.Id == employee.IdDepartment)
+        //            {
+        //                str += $"{department.Contingent}\t{employee.FirstName}\t" +
+        //                $"{employee.SecondName}\t{employee.Age}\t" +
+        //                $"{department.DepartmentName}\t" +
+        //                $"{employee.Total}\t{employee.Projects}\n";
+        //            }
+        //        }
+        //    }
+        //    return str;
+        //}
+
+        internal void PrintListEmployee()
         {
-            string str = $"Id " + "Имя " + "Фамилия " + "Возраст " + "Отдел " + "Зарплата " + "Кол-во проектов \n";
-            foreach(Department department in Departments)
+            string str = "";
+            foreach (Department department in Departments)
             {
-                foreach (Employee employee in Employees)
+                str += $"{department.Id}\t{department.DepartmentName}\t{department.CreationDate}\t" +
+                    $"{department.Contingent}\n";
+                foreach (Employee employee in employees)
                 {
                     if (department.Id == employee.IdDepartment)
                     {
-                        str += $"{employee.Id}\t{employee.FirstName}\t" +
-                        $"{employee.SecondName}\t{employee.Age}\t" +
-                        $"{department.DepartmentName}\t" +
-                        $"{employee.Total}\t{employee.Projects}\n";
+                        str += $"{employee.SecondName}\t{employee.FirstName}\t{employee.Age}\t" +
+                            $"{employee.Total}\t{employee.Projects}\n";
                     }
                 }
             }
-            return str;
+            Console.WriteLine(str);
         }
         #endregion
     }
