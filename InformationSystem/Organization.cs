@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace InformationSystem
 {
@@ -81,18 +82,60 @@ namespace InformationSystem
             string str = "";
             foreach (Department department in Departments)
             {
-                str += $"{department.Id}\t{department.DepartmentName}\t{department.CreationDate}\t" +
+                str += $"{department.Id}\t" +
+                    $"{department.DepartmentName}\t" +
+                    $"{department.CreationDate}\t" +
                     $"{department.Contingent}\n";
                 foreach (Employee employee in employees)
                 {
                     if (department.Id == employee.IdDepartment)
                     {
-                        str += $"{employee.SecondName}\t{employee.FirstName}\t{employee.Age}\t" +
-                            $"{employee.Total}\t{employee.Projects}\n";
+                        str += $"{employee.SecondName}\t" +
+                            $"{employee.FirstName}\t" +
+                            $"{employee.Age}\t" +
+                            $"{employee.Total}\t" +
+                            $"{employee.Projects}\n";
                     }
                 }
             }
             Console.WriteLine(str);
+        }
+
+        internal void AddToEmployees()
+        {
+            XDocument xDoc = XDocument.Load("employees.xml");
+            XElement root = xDoc.Element("Employees");
+            foreach (Employee employee in Employees)
+            {
+                root.Add(new XElement("Employee",
+                            new XElement("Id", employee.Id),
+                            new XElement("Фамилия", employee.SecondName),
+                            new XElement("Имя", employee.FirstName),
+                            new XElement("Возраст", employee.Age),
+                            new XElement("Количество проектов", employee.Projects),
+                            new XElement("Заработная плата", employee.Total),
+                            new XElement("Отдел", employee.IdDepartment)));
+            }
+            xDoc.Save("employees.xml");
+            Console.WriteLine("Содержимое файла employees.xml");
+            Console.WriteLine(xDoc);
+        }
+
+        internal void AddToDepartments()
+        {
+            XDocument xDoc = XDocument.Load("departments.xml");
+            XElement root = xDoc.Element("Departments");
+            foreach (Department department in Departments)
+            {
+                root.Add(new XElement("Department",
+                            new XElement("Id", department.Id),
+                            new XElement("Фамилия", department.DepartmentName),
+                            new XElement("Имя", department.CreationDate.Date),
+                            new XElement("Возраст", department.Contingent)));
+            }
+            xDoc.Save("departments.xml");
+            Console.WriteLine("Содержимое файла departments.xml");
+            Console.WriteLine(xDoc);
         }
         #endregion
     }

@@ -125,6 +125,12 @@ namespace InformationSystem
             //Console.WriteLine(organization);
             organization.PrintListEmployee();
             Console.ReadKey();
+
+            Console.Clear();
+
+            organization.AddToEmployees();
+            Console.ReadKey();
+            organization.AddToDepartments();
         }
     }
 }
