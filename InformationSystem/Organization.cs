@@ -58,25 +58,9 @@ namespace InformationSystem
             employees.Add(employee);
         }
 
-        //public override string ToString()
-        //{
-        //    string str = $"Id " + "Имя " + "Фамилия " + "Возраст " + "Отдел " + "Зарплата " + "Кол-во проектов \n";
-        //    foreach(Department department in Departments)
-        //    {
-        //        foreach (Employee employee in Employees)
-        //        {
-        //            if (department.Id == employee.IdDepartment)
-        //            {
-        //                str += $"{department.Contingent}\t{employee.FirstName}\t" +
-        //                $"{employee.SecondName}\t{employee.Age}\t" +
-        //                $"{department.DepartmentName}\t" +
-        //                $"{employee.Total}\t{employee.Projects}\n";
-        //            }
-        //        }
-        //    }
-        //    return str;
-        //}
-
+        /// <summary>
+        /// Метод выводит всю информацию на экран
+        /// </summary>
         internal void PrintListEmployee()
         {
             string str = "";
@@ -101,6 +85,9 @@ namespace InformationSystem
             Console.WriteLine(str);
         }
 
+        /// <summary>
+        /// Метод добавления списка сотрудников в xml-файл
+        /// </summary>
         internal void AddToEmployees()
         {
             XDocument xDoc = XDocument.Load("employees.xml");
@@ -121,6 +108,9 @@ namespace InformationSystem
             Console.WriteLine(xDoc);
         }
 
+        /// <summary>
+        /// Метод добавления списка отделов в xml-файл
+        /// </summary>
         internal void AddToDepartments()
         {
             XDocument xDoc = XDocument.Load("departments.xml");
@@ -129,9 +119,9 @@ namespace InformationSystem
             {
                 root.Add(new XElement("Department",
                             new XElement("Id", department.Id),
-                            new XElement("Фамилия", department.DepartmentName),
-                            new XElement("Имя", department.CreationDate.Date),
-                            new XElement("Возраст", department.Contingent)));
+                            new XElement("Отдел", department.DepartmentName),
+                            new XElement("Дата создания", department.CreationDate),
+                            new XElement("Количество сотрудников", department.Contingent)));
             }
             xDoc.Save("departments.xml");
             Console.WriteLine("Содержимое файла departments.xml");

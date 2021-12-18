@@ -62,7 +62,7 @@ namespace InformationSystem
         {
             this.Id = Guid.NewGuid();
             this.DepartmentName = departmentName;
-            this.CreationDate = creationDate;
+            this.CreationDate = creationDate.Date;
         }
         #endregion
 

@@ -119,18 +119,18 @@ namespace InformationSystem
                     //Добавляем сотрудника в отдел
                     organization.AddEmployeeToDepartment(department, employee);
                     
-                    //Console.WriteLine($"{i}\t{j}\t{KantorPairs(i,j)}");
                 }
             }
-            //Console.WriteLine(organization);
+
             organization.PrintListEmployee();
             Console.ReadKey();
 
             Console.Clear();
 
             organization.AddToEmployees();
-            Console.ReadKey();
             organization.AddToDepartments();
+            Console.ReadKey();
+
         }
     }
 }
