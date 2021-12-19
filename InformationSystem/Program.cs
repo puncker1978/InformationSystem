@@ -119,7 +119,6 @@ namespace InformationSystem
 
                     //Добавляем сотрудника в отдел
                     organization.AddEmployeeToDepartment(department, employee);
-                    
                 }
             }
 
@@ -127,9 +126,11 @@ namespace InformationSystem
             Console.ReadKey();
 
             Console.Clear();
-
-            organization.AddToEmployees();
-            organization.AddToDepartments();
+            //Добавляем коллекцию сотрудников в xml-файл
+            organization.AddEmployeesToXml();
+            
+            //Добавляем коллекцию отделов в xml-файл
+            organization.AddDepartmentsToXml();
             Console.ReadKey();
 
         }

@@ -90,7 +90,7 @@ namespace InformationSystem
         /// <summary>
         /// Метод добавления списка сотрудников в xml-файл
         /// </summary>
-        internal void AddToEmployees()
+        internal void AddEmployeesToXml()
         {
             XDocument xDoc = XDocument.Load("employees.xml");
             XElement root = xDoc.Element("Employees");
@@ -105,14 +105,14 @@ namespace InformationSystem
                     new XElement("Проекты",employee.Projects)));
             }
             xDoc.Save("employees.xml");
-            Console.WriteLine("Содержимое файла employees.xml");
-            Console.WriteLine(xDoc);
+            //Console.WriteLine("Содержимое файла employees.xml");
+            //Console.WriteLine(xDoc);
         }
 
         /// <summary>
         /// Метод добавления списка отделов в xml-файл
         /// </summary>
-        internal void AddToDepartments()
+        internal void AddDepartmentsToXml()
         {
             XDocument xDoc = XDocument.Load("departments.xml");
             XElement root = xDoc.Element("Departments");
@@ -125,8 +125,8 @@ namespace InformationSystem
                             new XElement("Контингент", department.Contingent)));
             }
             xDoc.Save("departments.xml");
-            Console.WriteLine("Содержимое файла departments.xml");
-            Console.WriteLine(xDoc);
+            //Console.WriteLine("Содержимое файла departments.xml");
+            //Console.WriteLine(xDoc);
         }
         #endregion
         #endregion
