@@ -95,7 +95,7 @@ namespace InformationSystem
             foreach (Employee employee in Employees)
             {
                 root.Add(new XElement("Employee",
-                            new XElement("Id", employee.Id),
+                    new XElement("Id", employee.Id),
                             new XElement("Фамилия", employee.SecondName),
                             new XElement("Имя", employee.FirstName),
                             new XElement("Возраст", employee.Age),
