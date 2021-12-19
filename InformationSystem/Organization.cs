@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace InformationSystem
 {
@@ -95,13 +96,12 @@ namespace InformationSystem
             foreach (Employee employee in Employees)
             {
                 root.Add(new XElement("Employee",
-                    new XElement("Id", employee.Id),
-                            new XElement("Фамилия", employee.SecondName),
-                            new XElement("Имя", employee.FirstName),
-                            new XElement("Возраст", employee.Age),
-                            new XElement("Количество проектов", employee.Projects),
-                            new XElement("Заработная плата", employee.Total),
-                            new XElement("Отдел", employee.IdDepartment)));
+                    new XElement("Id",employee.Id),
+                    new XElement("Фамилия", employee.SecondName),
+                    new XElement("Имя", employee.FirstName),
+                    new XElement("Возраст",employee.Age),
+                    new XElement("Зарплата" ,employee.Total),
+                    new XElement("Проекты",employee.Projects)));
             }
             xDoc.Save("employees.xml");
             Console.WriteLine("Содержимое файла employees.xml");
@@ -120,8 +120,8 @@ namespace InformationSystem
                 root.Add(new XElement("Department",
                             new XElement("Id", department.Id),
                             new XElement("Отдел", department.DepartmentName),
-                            new XElement("Дата создания", department.CreationDate),
-                            new XElement("Количество сотрудников", department.Contingent)));
+                            new XElement("Создан", department.CreationDate),
+                            new XElement("Контингент", department.Contingent)));
             }
             xDoc.Save("departments.xml");
             Console.WriteLine("Содержимое файла departments.xml");

@@ -94,7 +94,7 @@ namespace InformationSystem
 
             //Создали экземпляр класа Random
             Random rnd = new Random();
-            int i = 0, j = 0;
+            int i, j = 0;
 
             //Создадим, для примера, 20 сотрудников и
             //4 отдела. И распределим по 5 сотрудников в
@@ -107,6 +107,7 @@ namespace InformationSystem
 
                 //Добавляем инициализированный отдел в список всех отделов
                 organization.AddDepartmentToDepartments(department);
+                
                 for (j = 0; j < 5; j++)
                 {
                     //Инициализация экземпляра класса Employee
