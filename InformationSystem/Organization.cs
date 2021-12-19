@@ -86,6 +86,7 @@ namespace InformationSystem
             Console.WriteLine(str);
         }
 
+        #region Заполнение xml-файлов начальными данными
         /// <summary>
         /// Метод добавления списка сотрудников в xml-файл
         /// </summary>
@@ -127,6 +128,7 @@ namespace InformationSystem
             Console.WriteLine("Содержимое файла departments.xml");
             Console.WriteLine(xDoc);
         }
+        #endregion
         #endregion
     }
 }
