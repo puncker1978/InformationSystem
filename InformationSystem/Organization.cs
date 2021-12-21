@@ -129,6 +129,63 @@ namespace InformationSystem
             //Console.WriteLine(xDoc);
         }
         #endregion
+
+        #region
+        
+        /// <summary>
+        /// Метод поиска отдела по названию отдела. В качестве выходного параметра имеет ссылку на объект,
+        /// содержащий сведения о данном отделе.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="_department"></param>
+        internal void FindDepartment(string name, out Department _department)
+        {
+            _department = null;
+            foreach (Department department in Departments)
+            {
+                if (department.DepartmentName == name)
+                {
+                    _department = department;
+                }
+            }
+            if (_department != null)
+            {
+                Console.WriteLine(_department);
+            }
+            else
+            {
+                Console.WriteLine($"Отдел с названием {name} не найден");
+            }
+        }
+
+        /// <summary>
+        /// Метод поиска сотрудника по имени или фамилии. В качестве выходного параметра имеет ссылку на объект,
+        /// содержащий сведения о данном сотруднике.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="_department"></param>
+        internal void FindEmployee(string name, out Employee _employee)
+        {
+            _employee = null;
+            foreach (Employee employee in Employees)
+            {
+                if (employee.FirstName == name || employee.SecondName == name)
+                {
+                    _employee = employee;
+                }
+            }
+            if (_employee != null)
+            {
+                Console.WriteLine(_employee);
+            }
+            else
+            {
+                Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
+            }
+        }
+
+
+        #endregion
         #endregion
     }
 }

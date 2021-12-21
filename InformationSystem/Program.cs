@@ -89,6 +89,7 @@ namespace InformationSystem
         }
         static void Main(string[] args)
         {
+            #region Заполнение xml-файла тестовыми данными
             //Создали экземпляр класса Organization
             Organization organization = new Organization();
 
@@ -122,9 +123,11 @@ namespace InformationSystem
                 }
             }
 
+            //Выведем всех сотрудников не экран
             organization.PrintListEmployee();
             Console.ReadKey();
 
+            #region Сохраним тестовые данные о сотрудниках и отделах в xml-файлах
             Console.Clear();
             //Добавляем коллекцию сотрудников в xml-файл
             organization.AddEmployeesToXml();
@@ -132,7 +135,36 @@ namespace InformationSystem
             //Добавляем коллекцию отделов в xml-файл
             organization.AddDepartmentsToXml();
             Console.ReadKey();
+            #endregion
+            #endregion
 
+            //Поиск отдела
+            Console.Write("Введите название отдела: ");
+            string departmentName = Console.ReadLine();
+            Department _department;
+            organization.FindDepartment(departmentName, out _department);
+            Console.ReadKey();
+            Console.Clear();
+
+            //Поиск сотрудника
+            Console.Write("Введите имя или фамилию сотрудника: ");
+            string employeeName = Console.ReadLine();
+            Employee _employee;
+            organization.FindEmployee(employeeName, out _employee);
+            Console.ReadKey();
+            Console.Clear();
+
+            //Редактирование отдела
+
+            //Редактирование сотрудника
+
+            //Удаление отдела
+
+            //Удаление сотрудника
+
+            //Добавление нового отдела
+
+            //Добавление нового сотрудника
         }
     }
 }

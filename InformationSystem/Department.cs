@@ -69,7 +69,10 @@ namespace InformationSystem
         #region Методы
         public override string ToString()
         {
-            return $"{this.Id}\t{this.DepartmentName}";
+            return $"№ Отдела\t{this.Id}\n" +
+                $"Наименование отдела\t{this.DepartmentName}\n" +
+                $"Дата основания отдела\t{this.CreationDate.Date}\n" +
+                $"Количество сотрудников\t{this.Contingent}";
         }
         #endregion
     }
