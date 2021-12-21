@@ -124,7 +124,7 @@ namespace InformationSystem
             }
 
             //Выведем всех сотрудников не экран
-            organization.PrintListEmployee();
+            organization.ShowAll();
             Console.ReadKey();
 
             #region Сохраним тестовые данные о сотрудниках и отделах в xml-файлах
@@ -138,25 +138,70 @@ namespace InformationSystem
             #endregion
             #endregion
 
+            #region Поиск сотрудников или отделов
             //Поиск отдела
-            Console.Write("Введите название отдела: ");
-            string departmentName = Console.ReadLine();
-            Department _department;
-            organization.FindDepartment(departmentName, out _department);
-            Console.ReadKey();
-            Console.Clear();
+            {
+                Console.Write("Введите название отдела: ");
+                string departmentName = Console.ReadLine();
+                Department _department;
+                organization.FindDepartment(departmentName, out _department);
+                Console.ReadKey();
+                Console.Clear();
+            }
 
             //Поиск сотрудника
-            Console.Write("Введите имя или фамилию сотрудника: ");
-            string employeeName = Console.ReadLine();
-            Employee _employee;
-            organization.FindEmployee(employeeName, out _employee);
-            Console.ReadKey();
-            Console.Clear();
+            {
+                Console.Write("Введите имя или фамилию сотрудника: ");
+                string employeeName = Console.ReadLine();
+                Employee _employee;
+                organization.FindEmployee(employeeName, out _employee);
+                Console.ReadKey();
+                Console.Clear();
+            }
+            #endregion
 
-            //Редактирование отдела
+            #region Редактирование сотрудников или отделов
+            //Редактирование отдела. Будем менять название отдела
+            {
+                Console.Write("Введите название отдела, для которого хотите поменять название: ");
+                string departmentName = Console.ReadLine();
 
-            //Редактирование сотрудника
+                //Находим отдел с соответствующим именем
+                organization.FindDepartment(departmentName, out Department _department);
+
+                //Выводим информацию об имеющемся отделе
+                Console.WriteLine($"Информация об отделе:\n{_department}\n");
+
+                Console.Write("Введите новое название отдела: ");
+                string newDepartmentName = Console.ReadLine();
+                //Меняем информацию об отделе
+                _department.EditDepartment(_department, newDepartmentName);
+
+                Console.WriteLine($"Изменённый отдел: {_department}");
+                Console.ReadKey();
+                organization.ShowAll();
+                Console.Clear();
+            }
+            //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
+            {
+                Console.Write("Введите имя или фамилию сотрудника для которого будем менять" +
+                    "количество закреплённых за ним проектов: ");
+                string name = Console.ReadLine();
+
+                //Находим отдел с соответствующим именем и выводим информацию об этом сотруднике
+                organization.FindEmployee(name, out Employee _employee);
+
+                Console.Write("Введите новое количество проектов: ");
+                int newProjects = int.Parse(Console.ReadLine());
+                //Меняем информацию об отделе
+                _employee.EditEmployee(_employee, newProjects);
+
+                Console.WriteLine($"Обновлённая информация о сотруднике: {_employee}");
+                Console.ReadKey();
+                Console.Clear();
+            }
+
+            #endregion
 
             //Удаление отдела
 

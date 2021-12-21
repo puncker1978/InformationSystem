@@ -33,10 +33,11 @@ namespace InformationSystem
         #endregion
 
         #region Методы
+        #region Общие методы для работы с коллекциями
         /// <summary>
         /// Метод добавления нового отдела к списку всех отделов
         /// </summary>
-        /// <param name="department"></param>
+        /// <param name="department">Добавляемый отдел</param>
         internal void AddDepartmentToDepartments(Department department)
         {
             Departments.Add(department);
@@ -46,14 +47,18 @@ namespace InformationSystem
         /// Метод присваивает каждому сотруднику отдела
         /// уникальный идентификационный номер отдела
         /// </summary>
-        /// <param name="department"></param>
-        /// <param name="employee"></param>
+        /// <param name="department">Отдел к которому прикрепляется сотрудник</param>
+        /// <param name="employee">Прикрепляемый сотрудник</param>
         internal void AddEmployeeToDepartment(Department department, Employee employee)
         {
             employee.IdDepartment = department.Id;
             department.Contingent++;
         }
 
+        /// <summary>
+        /// Метод добавления нового сотрудника к списку всех сотрудников
+        /// </summary>
+        /// <param name="employee">Добавляемый сотрудник</param>
         internal void AddEmployeeToEmployees(Employee employee)
         {
             employees.Add(employee);
@@ -62,7 +67,7 @@ namespace InformationSystem
         /// <summary>
         /// Метод выводит всю информацию на экран
         /// </summary>
-        internal void PrintListEmployee()
+        internal void ShowAll()
         {
             string str = "";
             foreach (Department department in Departments)
@@ -86,7 +91,60 @@ namespace InformationSystem
             Console.WriteLine(str);
         }
 
-        #region Заполнение xml-файлов начальными данными
+        /// <summary>
+        /// Метод поиска отдела по названию отдела. В качестве входного параметра имеет название отдела.
+        /// В качестве out-параметра имеет ссылку на объект, содержащий сведения о данном отделе.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="_department"></param>
+        internal void FindDepartment(string name, out Department _department)
+        {
+            _department = null;
+            foreach (Department department in Departments)
+            {
+                if (department.DepartmentName == name)
+                {
+                    _department = department;
+                }
+            }
+            if (_department != null)
+            {
+                Console.WriteLine(_department);
+            }
+            else
+            {
+                Console.WriteLine($"Отдел с названием {name} не найден");
+            }
+        }
+
+        /// <summary>
+        /// Метод поиска сотрудника по имени или фамилии. В качестве входного параметрв имеет имя и фамилию сотрудника.
+        /// В качестве out-параметра имеет ссылку на объект, содержащий сведения о данном сотруднике.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="_department"></param>
+        internal void FindEmployee(string name, out Employee _employee)
+        {
+            _employee = null;
+            foreach (Employee employee in Employees)
+            {
+                if (employee.FirstName == name || employee.SecondName == name)
+                {
+                    _employee = employee;
+                }
+            }
+            if (_employee != null)
+            {
+                Console.WriteLine(_employee);
+            }
+            else
+            {
+                Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
+            }
+        }
+        #endregion
+
+        #region Специальные методы для работы с xml-файлами
         /// <summary>
         /// Метод добавления списка сотрудников в xml-файл
         /// </summary>
@@ -130,62 +188,13 @@ namespace InformationSystem
         }
         #endregion
 
-        #region
-        
-        /// <summary>
-        /// Метод поиска отдела по названию отдела. В качестве выходного параметра имеет ссылку на объект,
-        /// содержащий сведения о данном отделе.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="_department"></param>
-        internal void FindDepartment(string name, out Department _department)
-        {
-            _department = null;
-            foreach (Department department in Departments)
-            {
-                if (department.DepartmentName == name)
-                {
-                    _department = department;
-                }
-            }
-            if (_department != null)
-            {
-                Console.WriteLine(_department);
-            }
-            else
-            {
-                Console.WriteLine($"Отдел с названием {name} не найден");
-            }
-        }
-
-        /// <summary>
-        /// Метод поиска сотрудника по имени или фамилии. В качестве выходного параметра имеет ссылку на объект,
-        /// содержащий сведения о данном сотруднике.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="_department"></param>
-        internal void FindEmployee(string name, out Employee _employee)
-        {
-            _employee = null;
-            foreach (Employee employee in Employees)
-            {
-                if (employee.FirstName == name || employee.SecondName == name)
-                {
-                    _employee = employee;
-                }
-            }
-            if (_employee != null)
-            {
-                Console.WriteLine(_employee);
-            }
-            else
-            {
-                Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
-            }
-        }
 
 
-        #endregion
+
+
+
+
+
         #endregion
     }
 }

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace InformationSystem
 {
+    /// <summary>
+    /// Класс описывает отдел
+    /// </summary>
     internal class Department
     {
         #region Поля
@@ -67,12 +70,25 @@ namespace InformationSystem
         #endregion
 
         #region Методы
+        /// <summary>
+        /// Метод выводит сведения об отделе в консоль
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"№ Отдела\t{this.Id}\n" +
                 $"Наименование отдела\t{this.DepartmentName}\n" +
                 $"Дата основания отдела\t{this.CreationDate.Date}\n" +
                 $"Количество сотрудников\t{this.Contingent}";
+        }
+
+        /// <summary>
+        /// Метод редактирования названия отдела
+        /// </summary>
+        /// <param name="department">Отдел, который необходимо отредактировать</param>
+        internal void EditDepartment(Department department, string newDepartmentName)
+        {
+            department.DepartmentName = newDepartmentName;
         }
         #endregion
     }

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace InformationSystem
 {
+    /// <summary>
+    /// Класс описывает сотрудника
+    /// </summary>
     internal class Employee
     {
         #region Константы
@@ -109,6 +112,10 @@ namespace InformationSystem
         #endregion
 
         #region Методы
+        /// <summary>
+        /// Метод вывод сведения о сотруднике в консоль
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"№ Сотрудника\t{this.id}\n" +
@@ -118,6 +125,17 @@ namespace InformationSystem
                 $"Количество проектов\t{this.Projects}\n" +
                 $"Заработная плата\t{this.Total}\n" +
                 $"№ Отдела\t{this.IdDepartment}";
+        }
+
+        /// <summary>
+        /// Метод изменяет количество закрепленных за сотрудником проектов.
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <param name="newProjects"></param>
+        internal void EditEmployee(Employee employee, int newProjects)
+        {
+            employee.Projects = newProjects;
+            employee.Total = newProjects * salary;
         }
         #endregion
     }
