@@ -163,6 +163,8 @@ namespace InformationSystem
             #region Редактирование сотрудников или отделов
             //Редактирование отдела. Будем менять название отдела
             {
+                organization.ShowAll();
+
                 Console.Write("Введите название отдела, для которого хотите поменять название: ");
                 string departmentName = Console.ReadLine();
 
@@ -180,10 +182,12 @@ namespace InformationSystem
                 Console.WriteLine($"Изменённый отдел: {_department}");
                 Console.ReadKey();
                 organization.ShowAll();
+                Console.ReadKey();
                 Console.Clear();
             }
             //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
             {
+                organization.ShowAll();
                 Console.Write("Введите имя или фамилию сотрудника для которого будем менять" +
                     "количество закреплённых за ним проектов: ");
                 string name = Console.ReadLine();
@@ -198,15 +202,41 @@ namespace InformationSystem
 
                 Console.WriteLine($"Обновлённая информация о сотруднике: {_employee}");
                 Console.ReadKey();
+                organization.ShowAll();
+                Console.ReadKey();
                 Console.Clear();
             }
 
             #endregion
 
             //Удаление отдела
+            {
+                organization.ShowAll();
+                Console.Write("Введите название отдела для удаления: ");
+                string departmentName = Console.ReadLine();
+                
+                Department _department;
+                organization.FindDepartment(departmentName, out _department);
+
+                organization.DeleteDepartment(departmentName);
+                organization.ShowAll();
+                Console.ReadKey();
+                Console.Clear();
+            }
 
             //Удаление сотрудника
+            {
+                organization.ShowAll();
+               
+                Console.Write("Введитте имя сотрудника для удаления: ");
+                    string firstName = Console.ReadLine();
 
+                organization.FindEmployee(firstName, out Employee _employee);
+
+                organization.DeleteEmployee(firstName);
+                Console.ReadKey();
+                Console.Clear();
+            }
             //Добавление нового отдела
 
             //Добавление нового сотрудника

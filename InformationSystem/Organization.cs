@@ -33,7 +33,10 @@ namespace InformationSystem
         #endregion
 
         #region Методы
+
         #region Общие методы для работы с коллекциями
+
+        #region Методы добавления Отдела/Сотрудника к списку Отделов/Сотрудников
         /// <summary>
         /// Метод добавления нового отдела к списку всех отделов
         /// </summary>
@@ -42,6 +45,16 @@ namespace InformationSystem
         {
             Departments.Add(department);
         }
+
+        /// <summary>
+        /// Метод добавления нового сотрудника к списку всех сотрудников
+        /// </summary>
+        /// <param name="employee">Добавляемый сотрудник</param>
+        internal void AddEmployeeToEmployees(Employee employee)
+        {
+            employees.Add(employee);
+        }
+        #endregion
 
         /// <summary>
         /// Метод присваивает каждому сотруднику отдела
@@ -53,15 +66,6 @@ namespace InformationSystem
         {
             employee.IdDepartment = department.Id;
             department.Contingent++;
-        }
-
-        /// <summary>
-        /// Метод добавления нового сотрудника к списку всех сотрудников
-        /// </summary>
-        /// <param name="employee">Добавляемый сотрудник</param>
-        internal void AddEmployeeToEmployees(Employee employee)
-        {
-            employees.Add(employee);
         }
 
         /// <summary>
@@ -95,8 +99,8 @@ namespace InformationSystem
         /// Метод поиска отдела по названию отдела. В качестве входного параметра имеет название отдела.
         /// В качестве out-параметра имеет ссылку на объект, содержащий сведения о данном отделе.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="_department"></param>
+        /// <param name="name">Название отдела для поиска</param>
+        /// <param name="_department">Отдел, имеющий соответствующее название</param>
         internal void FindDepartment(string name, out Department _department)
         {
             _department = null;
@@ -121,8 +125,8 @@ namespace InformationSystem
         /// Метод поиска сотрудника по имени или фамилии. В качестве входного параметрв имеет имя и фамилию сотрудника.
         /// В качестве out-параметра имеет ссылку на объект, содержащий сведения о данном сотруднике.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="_department"></param>
+        /// <param name="name">Фамилия или имя сотрудника</param>
+        /// <param name="_employee">Сотрудник с соответствующей фамилией или именем</param>
         internal void FindEmployee(string name, out Employee _employee)
         {
             _employee = null;
@@ -142,6 +146,29 @@ namespace InformationSystem
                 Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
             }
         }
+
+
+        internal void DeleteDepartment(string name)
+        {
+            foreach (Department department in Departments)
+            {
+                if(department.DepartmentName == name)
+                {
+                    Departments.Remove(department);
+                }
+            }
+        }
+
+        internal void DeleteEmployee(string firstName)
+        {
+            foreach(Employee employee in Employees)
+            {
+                if(employee.FirstName == firstName)
+                {
+                    Employees.Remove(employee);
+                }
+            }
+        }
         #endregion
 
         #region Специальные методы для работы с xml-файлами
@@ -155,12 +182,12 @@ namespace InformationSystem
             foreach (Employee employee in Employees)
             {
                 root.Add(new XElement("Employee",
-                    new XElement("Id",employee.Id),
+                    new XElement("Id", employee.Id),
                     new XElement("Фамилия", employee.SecondName),
                     new XElement("Имя", employee.FirstName),
-                    new XElement("Возраст",employee.Age),
-                    new XElement("Зарплата" ,employee.Total),
-                    new XElement("Проекты",employee.Projects)));
+                    new XElement("Возраст", employee.Age),
+                    new XElement("Зарплата", employee.Total),
+                    new XElement("Проекты", employee.Projects)));
             }
             xDoc.Save("employees.xml");
             //Console.WriteLine("Содержимое файла employees.xml");
@@ -187,7 +214,6 @@ namespace InformationSystem
             //Console.WriteLine(xDoc);
         }
         #endregion
-
 
 
 
