@@ -7,7 +7,7 @@ namespace InformationSystem
     /// <summary>
     /// Класс описывает отдел
     /// </summary>
-    internal class Department
+    public class Department
     {
         #region Поля
 

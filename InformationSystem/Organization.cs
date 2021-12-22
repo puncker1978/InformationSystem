@@ -9,7 +9,7 @@ namespace InformationSystem
     /// <summary>
     /// Класс описывающий организацию
     /// </summary>
-    internal class Organization
+    internal partial class Organization
     {
         #region Приватные коллекции
         /// <summary>

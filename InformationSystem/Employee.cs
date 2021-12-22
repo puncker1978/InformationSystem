@@ -7,7 +7,7 @@ namespace InformationSystem
     /// <summary>
     /// Класс описывает сотрудника
     /// </summary>
-    internal class Employee
+    public class Employee
     {
         #region Константы
         /// <summary>
