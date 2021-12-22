@@ -99,55 +99,49 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод поиска отдела по названию отдела. В качестве входного параметра имеет название отдела.
-        /// В качестве out-параметра имеет ссылку на объект, содержащий сведения о данном отделе.
+        /// Метод поиска отдела по названию
         /// </summary>
-        /// <param name="name">Название отдела для поиска</param>
-        /// <param name="_department">Отдел, имеющий соответствующее название</param>
-        internal void FindDepartment(string name, out Department _department)
+        /// <param name="name">Название отдела</param>
+        /// <returns>Отдел</returns>
+        internal Department FindDepartment(string name)
         {
-            _department = null;
+            Department _department = null;
             foreach (Department department in Departments)
             {
                 if (department.DepartmentName == name)
                 {
                     _department = department;
+                    break;
+                }
+                else
+                {
+                    continue;
                 }
             }
-            if (_department != null)
-            {
-                Console.WriteLine(_department);
-            }
-            else
-            {
-                Console.WriteLine($"Отдел с названием {name} не найден");
-            }
+            return _department;
         }
 
         /// <summary>
-        /// Метод поиска сотрудника по имени или фамилии. В качестве входного параметрв имеет имя и фамилию сотрудника.
-        /// В качестве out-параметра имеет ссылку на объект, содержащий сведения о данном сотруднике.
+        /// Метод поиска сотрудника по имени или фамилии
         /// </summary>
-        /// <param name="name">Фамилия или имя сотрудника</param>
-        /// <param name="_employee">Сотрудник с соответствующей фамилией или именем</param>
-        internal void FindEmployee(string name, out Employee _employee)
+        /// <param name="name">Сотрудник</param>
+        /// <returns></returns>
+        internal Employee FindEmployee(string name)
         {
-            _employee = null;
+            Employee _employee = null;
             foreach (Employee employee in Employees)
             {
-                if (employee.FirstName == name || employee.SecondName == name)
+                if (employee.SecondName == name || employee.FirstName == name)
                 {
                     _employee = employee;
+                    break;
+                }
+                else
+                {
+                    continue;
                 }
             }
-            if (_employee != null)
-            {
-                Console.WriteLine(_employee);
-            }
-            else
-            {
-                Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
-            }
+            return _employee;
         }
 
 
