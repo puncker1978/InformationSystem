@@ -144,26 +144,37 @@ namespace InformationSystem
             return _employee;
         }
 
-
+        /// <summary>
+        /// Метод удаляет отдел из списка всех отделов
+        /// и всех сотрудников этого отдела
+        /// </summary>
+        /// <param name="name">Название отдела</param>
         internal void DeleteDepartment(string name)
         {
-            foreach (Department department in Departments)
+            Department _department = FindDepartment(name);
+            if (_department != null)
             {
-                if(department.DepartmentName == name)
+                foreach(Employee employee in Employees)
                 {
-                    Departments.Remove(department);
+                    if(employee.Id == _department.Id)
+                    {
+                        Employees.Remove(employee);
+                    }
                 }
+                Departments.Remove(_department);
             }
         }
 
-        internal void DeleteEmployee(string firstName)
+        /// <summary>
+        /// Метод удаляет сотрудника из списка всех сотрудников
+        /// </summary>
+        /// <param name="name">Фамилия или имя сотрудника</param>
+        internal void DeleteEmployee(string name)
         {
-            foreach(Employee employee in Employees)
+            Employee _employee = FindEmployee(name);
+            if(_employee != null)
             {
-                if(employee.FirstName == firstName)
-                {
-                    Employees.Remove(employee);
-                }
+                Employees.Remove(_employee);
             }
         }
         #endregion
