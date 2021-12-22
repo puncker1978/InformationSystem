@@ -74,7 +74,7 @@ namespace InformationSystem
         /// <summary>
         /// Метод выводит всю информацию на экран консоли
         /// </summary>
-        internal void ShowAll()
+        public override string ToString()
         {
             string str = "";
             foreach (Department department in Departments)
@@ -95,7 +95,7 @@ namespace InformationSystem
                     }
                 }
             }
-            Console.WriteLine(str);
+            return str;
         }
 
         /// <summary>
