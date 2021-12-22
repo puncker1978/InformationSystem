@@ -134,10 +134,10 @@ namespace InformationSystem
         /// </summary>
         /// <param name="employee">Сотрудник</param>
         /// <param name="newProjects">Новое количество проектов</param>
-        internal void EditEmployee(Employee employee, int newProjects)
+        internal void EditEmployee(int newProjects)
         {
-            employee.Projects = newProjects;
-            employee.Total = newProjects * salary;
+            Projects = newProjects;
+            Total = newProjects * salary;
         }
         #endregion
     }

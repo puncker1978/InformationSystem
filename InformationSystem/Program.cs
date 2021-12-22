@@ -124,7 +124,7 @@ namespace InformationSystem
             }
 
             //Выведем всех сотрудников не экран
-            organization.ShowAll();
+            Console.WriteLine(organization);
             Console.ReadKey();
 
             #region Сохраним тестовые данные о сотрудниках и отделах в xml-файлах
@@ -143,8 +143,8 @@ namespace InformationSystem
             {
                 Console.Write("Введите название отдела: ");
                 string departmentName = Console.ReadLine();
-                Department _department;
-                organization.FindDepartment(departmentName, out _department);
+                Department _department = organization.FindDepartment(departmentName);
+                Console.WriteLine(_department);
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -153,8 +153,7 @@ namespace InformationSystem
             {
                 Console.Write("Введите имя или фамилию сотрудника: ");
                 string employeeName = Console.ReadLine();
-                Employee _employee;
-                organization.FindEmployee(employeeName, out _employee);
+                Employee _employee = organization.FindEmployee(employeeName);
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -163,13 +162,13 @@ namespace InformationSystem
             #region Редактирование сотрудников или отделов
             //Редактирование отдела. Будем менять название отдела
             {
-                organization.ShowAll();
+                Console.WriteLine(organization);
 
                 Console.Write("Введите название отдела, для которого хотите поменять название: ");
                 string departmentName = Console.ReadLine();
 
                 //Находим отдел с соответствующим именем
-                organization.FindDepartment(departmentName, out Department _department);
+                Department _department = organization.FindDepartment(departmentName);
 
                 //Выводим информацию об имеющемся отделе
                 Console.WriteLine($"Информация об отделе:\n{_department}\n");
@@ -177,32 +176,33 @@ namespace InformationSystem
                 Console.Write("Введите новое название отдела: ");
                 string newDepartmentName = Console.ReadLine();
                 //Меняем информацию об отделе
-                _department.EditDepartment(_department, newDepartmentName);
+                _department.EditDepartment(newDepartmentName);
 
                 Console.WriteLine($"Изменённый отдел: {_department}");
                 Console.ReadKey();
-                organization.ShowAll();
+                Console.WriteLine(organization);
                 Console.ReadKey();
                 Console.Clear();
             }
             //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
             {
-                organization.ShowAll();
+                Console.WriteLine(organization);
                 Console.Write("Введите имя или фамилию сотрудника для которого будем менять" +
                     "количество закреплённых за ним проектов: ");
                 string name = Console.ReadLine();
 
-                //Находим отдел с соответствующим именем и выводим информацию об этом сотруднике
-                organization.FindEmployee(name, out Employee _employee);
+                //Находим сотрудника с соответствующим именем или
+                //фамилией и выводим информацию об этом сотруднике
+                Employee _employee = organization.FindEmployee(name);
 
                 Console.Write("Введите новое количество проектов: ");
                 int newProjects = int.Parse(Console.ReadLine());
-                //Меняем информацию об отделе
-                _employee.EditEmployee(_employee, newProjects);
+                //Меняем информацию о сотруднике
+                _employee.EditEmployee(newProjects);
 
                 Console.WriteLine($"Обновлённая информация о сотруднике: {_employee}");
                 Console.ReadKey();
-                organization.ShowAll();
+                Console.WriteLine(organization);
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -211,32 +211,27 @@ namespace InformationSystem
 
             //Удаление отдела
             {
-                organization.ShowAll();
+                Console.WriteLine(organization);
                 Console.Write("Введите название отдела для удаления: ");
                 string departmentName = Console.ReadLine();
-                
-                Department _department;
-                organization.FindDepartment(departmentName, out _department);
-
                 organization.DeleteDepartment(departmentName);
-                organization.ShowAll();
+                Console.WriteLine(organization);
                 Console.ReadKey();
                 Console.Clear();
             }
 
             //Удаление сотрудника
             {
-                organization.ShowAll();
+                Console.WriteLine(organization);
                
-                Console.Write("Введитте имя сотрудника для удаления: ");
-                    string firstName = Console.ReadLine();
+                Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
+                    string name = Console.ReadLine();
 
-                organization.FindEmployee(firstName, out Employee _employee);
-
-                organization.DeleteEmployee(firstName);
+                organization.DeleteEmployee(name);
                 Console.ReadKey();
                 Console.Clear();
             }
+
             //Добавление нового отдела
 
             //Добавление нового сотрудника

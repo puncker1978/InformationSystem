@@ -87,9 +87,9 @@ namespace InformationSystem
         /// </summary>
         /// <param name="department">Отдел</param>
         /// <param name="newDepartmentName">Новое название отдела</param>
-        internal void EditDepartment(Department department, string newDepartmentName)
+        internal void EditDepartment(string newDepartmentName)
         {
-            department.DepartmentName = newDepartmentName;
+            DepartmentName = newDepartmentName;
         }
         #endregion
     }
