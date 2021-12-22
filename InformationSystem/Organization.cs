@@ -124,8 +124,8 @@ namespace InformationSystem
         /// <summary>
         /// Метод поиска сотрудника по имени или фамилии
         /// </summary>
-        /// <param name="name">Сотрудник</param>
-        /// <returns></returns>
+        /// <param name="name">Фамилия или имя сотрудника</param>
+        /// <returns>Сотрудник</returns>
         internal Employee FindEmployee(string name)
         {
             Employee _employee = null;
