@@ -37,7 +37,7 @@ namespace InformationSystem
 
         #region Методы
 
-        #region Общие методы для работы с коллекциями
+        #region Методы добавления отделов/сотрудников в списки отделов/сотрудников
 
         /// <summary>
         /// Метод добавления нового отдела к списку всех отделов
@@ -56,80 +56,9 @@ namespace InformationSystem
         {
             employees.Add(employee);
         }
+        #endregion
 
-        /// <summary>
-        /// Метод удаляет отдел из списка всех отделов
-        /// и всех сотрудников этого отдела
-        /// </summary>
-        /// <param name="name">Название отдела</param>
-        internal void DeleteDepartment(string name)
-        {
-            Department _department = FindDepartment(name);
-            if (_department != null)
-            {
-                foreach (Employee employee in Employees)
-                {
-                    if (employee.Id == _department.Id)
-                    {
-                        Employees.Remove(employee);
-                    }
-                }
-                Departments.Remove(_department);
-            }
-        }
-
-        /// <summary>
-        /// Метод удаляет сотрудника из списка всех сотрудников
-        /// </summary>
-        /// <param name="name">Фамилия или имя сотрудника</param>
-        internal void DeleteEmployee(string name)
-        {
-            Employee _employee = FindEmployee(name);
-            if (_employee != null)
-            {
-                Employees.Remove(_employee);
-            }
-        }
-
-        /// <summary>
-        /// Метод присваивает каждому сотруднику отдела
-        /// уникальный идентификационный номер отдела
-        /// </summary>
-        /// <param name="department">Отдел к которому прикрепляется сотрудник</param>
-        /// <param name="employee">Прикрепляемый сотрудник</param>
-        internal void AddEmployeeToDepartment(Department department, Employee employee)
-        {
-            employee.IdDepartment = department.Id;
-            department.Contingent++;
-        }
-
-        /// <summary>
-        /// Метод выводит всю информацию на экран консоли
-        /// </summary>
-        public override string ToString()
-        {
-            string str = "";
-            foreach (Department department in Departments)
-            {
-                str += $"{department.Id}\t" +
-                    $"{department.DepartmentName}\t" +
-                    $"{department.CreationDate}\t" +
-                    $"{department.Contingent}\n";
-                foreach (Employee employee in employees)
-                {
-                    if (department.Id == employee.IdDepartment)
-                    {
-                        str += $"{employee.SecondName}\t" +
-                            $"{employee.FirstName}\t" +
-                            $"{employee.Age}\t" +
-                            $"{employee.Total}\t" +
-                            $"{employee.Projects}\n";
-                    }
-                }
-            }
-            return str;
-        }
-
+        #region Методы поиска отделов/сотрудников в списках отделов/сотрудников
         /// <summary>
         /// Метод поиска отдела по названию
         /// </summary>
@@ -177,6 +106,85 @@ namespace InformationSystem
         }
         #endregion
 
+        #region Метод добавления сотрудника к отделу
+        /// <summary>
+        /// Метод присваивает каждому сотруднику отдела
+        /// уникальный идентификационный номер отдела
+        /// </summary>
+        /// <param name="department">Отдел к которому прикрепляется сотрудник</param>
+        /// <param name="employee">Прикрепляемый сотрудник</param>
+        internal void AddEmployeeToDepartment(Department department, Employee employee)
+        {
+            employee.IdDepartment = department.Id;
+            department.Contingent++;
+        }
+        #endregion
+
+        #region Методы удаления отделов/сотрудников из списков отделов/сотрудников
+        /// <summary>
+        /// Метод удаления отдела из списка всех отделов
+        /// и всех сотрудников этого отдела
+        /// </summary>
+        /// <param name="name">Название отдела</param>
+        internal void DeleteDepartment(string name)
+        {
+            Department _department = FindDepartment(name);
+            if (_department != null)
+            {
+                foreach (Employee employee in Employees)
+                {
+                    if (employee.Id == _department.Id)
+                    {
+                        Employees.Remove(employee);
+                    }
+                }
+                Departments.Remove(_department);
+            }
+        }
+
+        /// <summary>
+        /// Метод удаляет сотрудника из списка всех сотрудников
+        /// </summary>
+        /// <param name="name">Фамилия или имя сотрудника</param>
+        internal void DeleteEmployee(string name)
+        {
+            Employee _employee = FindEmployee(name);
+            if (_employee != null)
+            {
+                Employees.Remove(_employee);
+            }
+        }
+        #endregion
+
+        #region Метод вывода информации о всех отделах и всех сотрудниках
+        /// <summary>
+        /// Метод выводит всю информацию на экран консоли
+        /// </summary>
+        public override string ToString()
+        {
+            string str = "";
+            foreach (Department department in Departments)
+            {
+                str += $"{department.Id}\t" +
+                    $"{department.DepartmentName}\t" +
+                    $"{department.CreationDate}\t" +
+                    $"{department.Contingent}\n";
+                foreach (Employee employee in employees)
+                {
+                    if (department.Id == employee.IdDepartment)
+                    {
+                        str += $"{employee.SecondName}\t" +
+                            $"{employee.FirstName}\t" +
+                            $"{employee.Age}\t" +
+                            $"{employee.Total}\t" +
+                            $"{employee.Projects}\n";
+                    }
+                }
+            }
+            return str;
+        }
+        #endregion
+
         #region Специальные методы для работы с xml-файлами
         /// <summary>
         /// Метод добавления списка сотрудников в xml-файл
@@ -216,12 +224,6 @@ namespace InformationSystem
             xDoc.Save("departments.xml");
         }
         #endregion
-
-
-
-
-
-
 
         #endregion
     }
