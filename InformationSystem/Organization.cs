@@ -39,7 +39,6 @@ namespace InformationSystem
 
         #region Общие методы для работы с коллекциями
 
-        #region Методы добавления Отдела/Сотрудника к списку Отделов/Сотрудников
         /// <summary>
         /// Метод добавления нового отдела к списку всех отделов
         /// </summary>
@@ -57,7 +56,40 @@ namespace InformationSystem
         {
             employees.Add(employee);
         }
-        #endregion
+
+        /// <summary>
+        /// Метод удаляет отдел из списка всех отделов
+        /// и всех сотрудников этого отдела
+        /// </summary>
+        /// <param name="name">Название отдела</param>
+        internal void DeleteDepartment(string name)
+        {
+            Department _department = FindDepartment(name);
+            if (_department != null)
+            {
+                foreach (Employee employee in Employees)
+                {
+                    if (employee.Id == _department.Id)
+                    {
+                        Employees.Remove(employee);
+                    }
+                }
+                Departments.Remove(_department);
+            }
+        }
+
+        /// <summary>
+        /// Метод удаляет сотрудника из списка всех сотрудников
+        /// </summary>
+        /// <param name="name">Фамилия или имя сотрудника</param>
+        internal void DeleteEmployee(string name)
+        {
+            Employee _employee = FindEmployee(name);
+            if (_employee != null)
+            {
+                Employees.Remove(_employee);
+            }
+        }
 
         /// <summary>
         /// Метод присваивает каждому сотруднику отдела
@@ -143,40 +175,6 @@ namespace InformationSystem
             }
             return _employee;
         }
-
-        /// <summary>
-        /// Метод удаляет отдел из списка всех отделов
-        /// и всех сотрудников этого отдела
-        /// </summary>
-        /// <param name="name">Название отдела</param>
-        internal void DeleteDepartment(string name)
-        {
-            Department _department = FindDepartment(name);
-            if (_department != null)
-            {
-                foreach(Employee employee in Employees)
-                {
-                    if(employee.Id == _department.Id)
-                    {
-                        Employees.Remove(employee);
-                    }
-                }
-                Departments.Remove(_department);
-            }
-        }
-
-        /// <summary>
-        /// Метод удаляет сотрудника из списка всех сотрудников
-        /// </summary>
-        /// <param name="name">Фамилия или имя сотрудника</param>
-        internal void DeleteEmployee(string name)
-        {
-            Employee _employee = FindEmployee(name);
-            if(_employee != null)
-            {
-                Employees.Remove(_employee);
-            }
-        }
         #endregion
 
         #region Специальные методы для работы с xml-файлами
@@ -198,8 +196,6 @@ namespace InformationSystem
                     new XElement("Проекты", employee.Projects)));
             }
             xDoc.Save("employees.xml");
-            //Console.WriteLine("Содержимое файла employees.xml");
-            //Console.WriteLine(xDoc);
         }
 
         /// <summary>
@@ -218,8 +214,6 @@ namespace InformationSystem
                             new XElement("Контингент", department.Contingent)));
             }
             xDoc.Save("departments.xml");
-            //Console.WriteLine("Содержимое файла departments.xml");
-            //Console.WriteLine(xDoc);
         }
         #endregion
 
