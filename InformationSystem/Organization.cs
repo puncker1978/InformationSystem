@@ -6,6 +6,9 @@ using System.Xml;
 
 namespace InformationSystem
 {
+    /// <summary>
+    /// Класс описывающий организацию
+    /// </summary>
     internal class Organization
     {
         #region Приватные коллекции
@@ -69,7 +72,7 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод выводит всю информацию на экран
+        /// Метод выводит всю информацию на экран консоли
         /// </summary>
         internal void ShowAll()
         {
