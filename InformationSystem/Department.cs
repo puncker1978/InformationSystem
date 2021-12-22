@@ -47,7 +47,7 @@ namespace InformationSystem
         /// <summary>
         /// Дата создания отдела
         /// </summary>
-        internal DateTime CreationDate { get => creationDate; set => creationDate = value; }
+        internal DateTime CreationDate { get => creationDate.Date; set => creationDate = value; }
 
         /// <summary>
         /// Количество сотрудников отдела
@@ -73,7 +73,7 @@ namespace InformationSystem
         /// <summary>
         /// Метод выводит сведения об отделе в консоль
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Отдел</returns>
         public override string ToString()
         {
             return $"№ Отдела\t{this.Id}\n" +
@@ -85,7 +85,8 @@ namespace InformationSystem
         /// <summary>
         /// Метод редактирования названия отдела
         /// </summary>
-        /// <param name="department">Отдел, который необходимо отредактировать</param>
+        /// <param name="department">Отдел</param>
+        /// <param name="newDepartmentName">Новое название отдела</param>
         internal void EditDepartment(Department department, string newDepartmentName)
         {
             department.DepartmentName = newDepartmentName;

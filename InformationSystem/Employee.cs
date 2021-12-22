@@ -113,9 +113,9 @@ namespace InformationSystem
 
         #region Методы
         /// <summary>
-        /// Метод вывод сведения о сотруднике в консоль
+        /// Метод выводит сведения о сотруднике в консоль
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Сотрудник</returns>
         public override string ToString()
         {
             return $"№ Сотрудника\t{this.id}\n" +
@@ -128,10 +128,12 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод изменяет количество закрепленных за сотрудником проектов.
+        /// Метод изменяет количество закрепленных за сотрудником
+        /// проектов и заработную плату в соответствии с ноовым
+        /// количеством проектов
         /// </summary>
-        /// <param name="employee"></param>
-        /// <param name="newProjects"></param>
+        /// <param name="employee">Сотрудник</param>
+        /// <param name="newProjects">Новое количество проектов</param>
         internal void EditEmployee(Employee employee, int newProjects)
         {
             employee.Projects = newProjects;
