@@ -240,8 +240,8 @@ namespace InformationSystem
             {
                 Console.WriteLine(organization);
                 Console.Write("Введите название отдела для удаления: ");
-                string departmentName = Console.ReadLine();
-                organization.DeleteDepartment(departmentName);
+                string name = Console.ReadLine();
+                organization.DeleteDepartment(name);
                 Console.WriteLine(organization);
                 Console.ReadKey();
                 Console.Clear();
@@ -250,18 +250,61 @@ namespace InformationSystem
             //Удаление сотрудника
             {
                 Console.WriteLine(organization);
-               
                 Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
-                    string name = Console.ReadLine();
-
+                string name = Console.ReadLine();
                 organization.DeleteEmployee(name);
                 Console.ReadKey();
                 Console.Clear();
             }
 
             //Добавление нового отдела
-
+            {
+                Console.WriteLine(organization);
+                Console.Write("Введите название нового отдела: ");
+                string name = Console.ReadLine();
+                Department department = new Department(name, DateTime.Now);
+                organization.AddDepartmentToDepartments(department);
+                Console.WriteLine(organization);
+                Console.ReadKey();
+                Console.Clear();
+            }
             //Добавление нового сотрудника
+            {
+                Console.WriteLine(organization);
+                Console.Write("Введите данные о новом сотруднике: ");
+
+                Console.Write("Фамилия: ");
+                string firstName = Console.ReadLine();
+
+                Console.Write("Имя: ");
+                string secondName = Console.ReadLine();
+
+                Console.Write("Возраст: ");
+                int age = int.Parse(Console.ReadLine());
+
+                Console.Write("Количество проектов: ");
+                int projects = int.Parse(Console.ReadLine());
+
+                //Создадим экземпляр класса Employee
+                Employee employee = new Employee(secondName,firstName,age,projects);
+
+                //Добавим нового сотрудника к списку всех сотрудников
+                organization.AddEmployeeToEmployees(employee);
+
+                Console.Write("Введите название отдела для данного сотрудника: ");
+                string name = Console.ReadLine();
+
+                //Находим отдел в списке всех отделов
+                Department department = organization.FindDepartment(name);
+
+                //Добавляем сотрудника в новый отдел
+                organization.AddEmployeeToDepartment(department, employee);
+
+                //Выводим всю информацию на экран консоли
+                Console.WriteLine(organization);
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
     }
 }
