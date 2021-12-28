@@ -34,7 +34,7 @@ namespace InformationSystem
         #endregion
 
         #region Методы
-
+        #region Общие методы
         #region Методы добавления отделов/сотрудников в списки отделов/сотрудников
 
         /// <summary>
@@ -182,6 +182,7 @@ namespace InformationSystem
             return str;
         }
         #endregion
+        #endregion
 
         #region Специальные методы для работы с xml-файлами
         /// <summary>
@@ -222,12 +223,20 @@ namespace InformationSystem
             xDoc.Save("departments.xml");
         }
 
+        /// <summary>
+        /// Метод разбора xml-файла, содержащего сведения обо всех отделах
+        /// </summary>
+        /// <returns>Коллекция сотрудников</returns>
         internal List<Employee> EmployeesFromXml()
         {
             List<Employee> list = new List<Employee>();
             return list;
         }
 
+        /// <summary>
+        /// Метод разбора xml-файла, содержащего сведения о всех сотрудниках
+        /// </summary>
+        /// <returns>Коллекция сотрудников</returns>
         internal List<Department> DepartmentsFromXml()
         {
             List<Department> list = new List<Department>();

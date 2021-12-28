@@ -20,7 +20,7 @@ namespace InformationSystem
         /// <summary>
         /// Уникальный идентификационный номер сотрудника
         /// </summary>
-        private Guid id;
+        private string id;
 
         /// <summary>
         /// Фамилия сотрудника
@@ -40,7 +40,7 @@ namespace InformationSystem
         /// <summary>
         /// Номер отдела, к которому прикреплён сотрудник
         /// </summary>
-        private Guid idDepartment;
+        private string idDepartment;
 
         /// <summary>
         /// Количество проектов, закрепленных за сотрудником
@@ -57,7 +57,7 @@ namespace InformationSystem
         /// <summary>
         /// Уникальный идентификационный номер сотрудника
         /// </summary>
-        internal Guid Id { get => id; set => id = value; }
+        internal string Id { get => id; set => id = value; }
 
         /// <summary>
         /// Фамилия сотрудника
@@ -77,7 +77,7 @@ namespace InformationSystem
         /// <summary>
         /// Номер отдела, к которому прикреплён сотрудник
         /// </summary>
-        internal Guid IdDepartment { get => idDepartment; set => idDepartment = value; }
+        internal string IdDepartment { get => idDepartment; set => idDepartment = value; }
 
         /// <summary>
         /// Количество проектов, закрепленных за сотрудником
@@ -102,12 +102,23 @@ namespace InformationSystem
         /// <param name="projects">Количество проектов, закрепленных за сотрудником</param>
         internal Employee(string secondName, string firstName, int age, int projects)
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Guid.NewGuid().ToString();
             this.SecondName = secondName;
             this.FirstName = firstName;
             this.Age = age;
             this.Projects = projects;
             this.Total = salary * this.Projects;
+        }
+
+        internal Employee(string id, string secondName, string firstName, int age, string idDepartment, int projects, int total)
+        {
+            this.Id = id;
+            this.SecondName= secondName;
+            this.FirstName = firstName;
+            this.Age = age;
+            this.IdDepartment = idDepartment;
+            this.Projects = projects;
+            this.Total = total;
         }
         #endregion
 
