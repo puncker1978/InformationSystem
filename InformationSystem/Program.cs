@@ -91,220 +91,226 @@ namespace InformationSystem
         {
             #region Заполнение xml-файла тестовыми данными
             //Создали экземпляр класса Organization
-            Organization organization = new Organization();
-
-            //Создали экземпляр класа Random
-            Random rnd = new Random();
-            int i, j = 0;
-
-            //Создадим, для примера, 20 сотрудников и
-            //4 отдела. И распределим по 5 сотрудников в
-            //каждый отел.
-            for (i = 0; i < 4; i++)
             {
-                //Инициализация экземпляра класса Department
-                Department department = new Department($"Отдел {KantorPairs(i, j)}",
-                    new DateTime(2021, rnd.Next(1, 12), rnd.Next(1, 28)));
+                Organization organization = new Organization();
 
-                //Добавляем инициализированный отдел в список всех отделов
-                organization.AddDepartmentToDepartments(department);
-                
-                for (j = 0; j < 5; j++)
+                //Создали экземпляр класа Random
+                Random rnd = new Random();
+                int i, j = 0;
+
+                //Создадим, для примера, 20 сотрудников и
+                //4 отдела. И распределим по 5 сотрудников в
+                //каждый отел.
+                for (i = 0; i < 4; i++)
                 {
-                    //Инициализация экземпляра класса Employee
-                    Employee employee = new Employee($"Фамилия {KantorPairs(i, j)}",
-                        $"Имя {KantorPairs(i, j)}", rnd.Next(18, 70), rnd.Next(1, 3));
+                    //Инициализация экземпляра класса Department
+                    Department department = new Department($"Отдел {KantorPairs(i, j)}",
+                        new DateTime(2021, rnd.Next(1, 12), rnd.Next(1, 28)));
 
-                    //Добавляем сотрудника в список всех сотрудников
-                    organization.AddEmployeeToEmployees(employee);
+                    //Добавляем инициализированный отдел в список всех отделов
+                    organization.AddDepartmentToDepartments(department);
 
-                    //Добавляем сотрудника в отдел
-                    organization.AddEmployeeToDepartment(department, employee);
+                    for (j = 0; j < 5; j++)
+                    {
+                        //Инициализация экземпляра класса Employee
+                        Employee employee = new Employee($"Фамилия {KantorPairs(i, j)}",
+                            $"Имя {KantorPairs(i, j)}", rnd.Next(18, 70), rnd.Next(1, 3));
+
+                        //Добавляем сотрудника в список всех сотрудников
+                        organization.AddEmployeeToEmployees(employee);
+
+                        //Добавляем сотрудника в отдел
+                        organization.AddEmployeeToDepartment(department, employee);
+                    }
                 }
-            }
 
-            //Выведем всех сотрудников не экран
-            Console.WriteLine(organization);
-            Console.ReadKey();
-
-            #region Сохраним тестовые данные о сотрудниках и отделах в xml-файлах
-            Console.Clear();
-            //Добавляем коллекцию сотрудников в xml-файл
-            organization.AddEmployeesToXml();
-            
-            //Добавляем коллекцию отделов в xml-файл
-            organization.AddDepartmentsToXml();
-            #endregion
-            #endregion
-
-            #region Поиск сотрудников или отделов
-            //Поиск отдела
-            {
-                Console.WriteLine("Поиск отдела");
-                Console.Write("Введите название отдела: ");
-                string name = Console.ReadLine();
-                Department _department = organization.FindDepartment(name);
-                if (_department != null)
-                {
-                    Console.WriteLine($"Результат поиска:\n{_department}");
-                }
-                else
-                {
-                    Console.WriteLine($"Отдел {name} не найден");
-                }
+                //Выведем всех сотрудников не экран
+                Console.WriteLine(organization);
                 Console.ReadKey();
-                Console.Clear();
-            }
 
-            //Поиск сотрудника
-            {
-                Console.Write("Введите имя или фамилию сотрудника: ");
-                string name = Console.ReadLine();
-                Employee _employee = organization.FindEmployee(name);
-                if (_employee != null)
-                {
-                    Console.WriteLine($"Результат поиска:\n{_employee}");
-                }
-                else
-                {
-                    Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
-                }
-                Console.ReadKey();
+                #region Сохраним тестовые данные о сотрудниках и отделах в xml-файлах
                 Console.Clear();
+                //Добавляем коллекцию сотрудников в xml-файл
+                organization.AddEmployeesToXml();
+
+                //Добавляем коллекцию отделов в xml-файл
+                organization.AddDepartmentsToXml();
+                #endregion
             }
             #endregion
 
-            #region Редактирование сотрудников или отделов
-            //Редактирование отдела. Будем менять название отдела
-            //Метод для переименования отделов
             {
-                //Console.WriteLine(organization);
-
-                //Console.Write("Введите название отдела, для которого хотите поменять название: ");
-                //string name = Console.ReadLine();
-
-                ////Находим отдел с соответствующим именем
-                //Department _department = organization.FindDepartment(name);
-
-                ////Выводим информацию об имеющемся отделе
-                //if (_department != null)
-                //{
-                //    Console.WriteLine($"Информация об отделе:\n{_department}\n");
-                //}
-                //else
-                //{
-                //    Console.WriteLine($"Отдел {name} не найден");
-                //}
-
-                //Console.Write("Введите новое название отдела: ");
-                //string newDepartmentName = Console.ReadLine();
-                ////Меняем информацию об отделе
-                //_department.EditDepartment(newDepartmentName);
-
-                //Console.WriteLine($"Изменённый отдел:\n{_department}");
-                //Console.ReadKey();
-                //Console.Clear();
-                //Console.WriteLine(organization);
-                //Console.ReadKey();
-                //Console.Clear();
+                Organization organization = new Organization();
+                organization.DepartmentsFromXml();
             }
+            //#region Поиск сотрудников или отделов
+            ////Поиск отдела
+            //{
+            //    Console.WriteLine("Поиск отдела");
+            //    Console.Write("Введите название отдела: ");
+            //    string name = Console.ReadLine();
+            //    Department _department = organization.FindDepartment(name);
+            //    if (_department != null)
+            //    {
+            //        Console.WriteLine($"Результат поиска:\n{_department}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"Отдел {name} не найден");
+            //    }
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //}
 
-            //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
-            //Метод переименования сотрудника
-            {
-                //Console.WriteLine(organization);
-                //Console.Write("Введите имя или фамилию сотрудника для которого будем менять" +
-                //    "количество закреплённых за ним проектов: ");
-                //string name = Console.ReadLine();
+            ////Поиск сотрудника
+            //{
+            //    Console.Write("Введите имя или фамилию сотрудника: ");
+            //    string name = Console.ReadLine();
+            //    Employee _employee = organization.FindEmployee(name);
+            //    if (_employee != null)
+            //    {
+            //        Console.WriteLine($"Результат поиска:\n{_employee}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
+            //    }
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //}
+            //#endregion
 
-                ////Находим сотрудника с соответствующим именем или
-                ////фамилией и выводим информацию об этом сотруднике
-                //Employee _employee = organization.FindEmployee(name);
+            //#region Редактирование сотрудников или отделов
+            ////Редактирование отдела. Будем менять название отдела
+            ////Метод для переименования отделов
+            //{
+            //    //Console.WriteLine(organization);
 
-                //Console.Write("Введите новое количество проектов: ");
-                //int newProjects = int.Parse(Console.ReadLine());
-                ////Меняем информацию о сотруднике
-                //_employee.EditEmployee(newProjects);
+            //    //Console.Write("Введите название отдела, для которого хотите поменять название: ");
+            //    //string name = Console.ReadLine();
 
-                //Console.WriteLine($"Обновлённая информация о сотруднике:\n{_employee}");
-                //Console.ReadKey();
-                //Console.Clear();
-                //Console.WriteLine(organization);
-                //Console.ReadKey();
-                //Console.Clear();
-            }
+            //    ////Находим отдел с соответствующим именем
+            //    //Department _department = organization.FindDepartment(name);
 
-            #endregion
+            //    ////Выводим информацию об имеющемся отделе
+            //    //if (_department != null)
+            //    //{
+            //    //    Console.WriteLine($"Информация об отделе:\n{_department}\n");
+            //    //}
+            //    //else
+            //    //{
+            //    //    Console.WriteLine($"Отдел {name} не найден");
+            //    //}
 
-            //Удаление отдела
-            {
-                Console.WriteLine(organization);
-                Console.Write("Введите название отдела для удаления: ");
-                string name = Console.ReadLine();
-                organization.DeleteDepartment(name);
-                Console.WriteLine(organization);
-                Console.ReadKey();
-                Console.Clear();
-            }
+            //    //Console.Write("Введите новое название отдела: ");
+            //    //string newDepartmentName = Console.ReadLine();
+            //    ////Меняем информацию об отделе
+            //    //_department.EditDepartment(newDepartmentName);
 
-            //Удаление сотрудника
-            {
-                Console.WriteLine(organization);
-                Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
-                string name = Console.ReadLine();
-                organization.DeleteEmployee(name);
-                Console.ReadKey();
-                Console.Clear();
-            }
+            //    //Console.WriteLine($"Изменённый отдел:\n{_department}");
+            //    //Console.ReadKey();
+            //    //Console.Clear();
+            //    //Console.WriteLine(organization);
+            //    //Console.ReadKey();
+            //    //Console.Clear();
+            //}
 
-            //Добавление нового отдела
-            {
-                Console.WriteLine(organization);
-                Console.Write("Введите название нового отдела: ");
-                string name = Console.ReadLine();
-                Department department = new Department(name, DateTime.Now);
-                organization.AddDepartmentToDepartments(department);
-                Console.WriteLine(organization);
-                Console.ReadKey();
-                Console.Clear();
-            }
-            //Добавление нового сотрудника
-            {
-                Console.WriteLine(organization);
-                Console.Write("Введите данные о новом сотруднике: ");
+            ////Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
+            ////Метод переименования сотрудника
+            //{
+            //    //Console.WriteLine(organization);
+            //    //Console.Write("Введите имя или фамилию сотрудника для которого будем менять" +
+            //    //    "количество закреплённых за ним проектов: ");
+            //    //string name = Console.ReadLine();
 
-                Console.Write("Фамилия: ");
-                string firstName = Console.ReadLine();
+            //    ////Находим сотрудника с соответствующим именем или
+            //    ////фамилией и выводим информацию об этом сотруднике
+            //    //Employee _employee = organization.FindEmployee(name);
 
-                Console.Write("Имя: ");
-                string secondName = Console.ReadLine();
+            //    //Console.Write("Введите новое количество проектов: ");
+            //    //int newProjects = int.Parse(Console.ReadLine());
+            //    ////Меняем информацию о сотруднике
+            //    //_employee.EditEmployee(newProjects);
 
-                Console.Write("Возраст: ");
-                int age = int.Parse(Console.ReadLine());
+            //    //Console.WriteLine($"Обновлённая информация о сотруднике:\n{_employee}");
+            //    //Console.ReadKey();
+            //    //Console.Clear();
+            //    //Console.WriteLine(organization);
+            //    //Console.ReadKey();
+            //    //Console.Clear();
+            //}
 
-                Console.Write("Количество проектов: ");
-                int projects = int.Parse(Console.ReadLine());
+            //#endregion
 
-                //Создадим экземпляр класса Employee
-                Employee employee = new Employee(secondName,firstName,age,projects);
+            ////Удаление отдела
+            //{
+            //    Console.WriteLine(organization);
+            //    Console.Write("Введите название отдела для удаления: ");
+            //    string name = Console.ReadLine();
+            //    organization.DeleteDepartment(name);
+            //    Console.WriteLine(organization);
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //}
 
-                //Добавим нового сотрудника к списку всех сотрудников
-                organization.AddEmployeeToEmployees(employee);
+            ////Удаление сотрудника
+            //{
+            //    Console.WriteLine(organization);
+            //    Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
+            //    string name = Console.ReadLine();
+            //    organization.DeleteEmployee(name);
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //}
 
-                Console.Write("Введите название отдела для данного сотрудника: ");
-                string name = Console.ReadLine();
+            ////Добавление нового отдела
+            //{
+            //    Console.WriteLine(organization);
+            //    Console.Write("Введите название нового отдела: ");
+            //    string name = Console.ReadLine();
+            //    Department department = new Department(name, DateTime.Now);
+            //    organization.AddDepartmentToDepartments(department);
+            //    Console.WriteLine(organization);
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //}
+            ////Добавление нового сотрудника
+            //{
+            //    Console.WriteLine(organization);
+            //    Console.Write("Введите данные о новом сотруднике: ");
 
-                //Находим отдел в списке всех отделов
-                Department department = organization.FindDepartment(name);
+            //    Console.Write("Фамилия: ");
+            //    string firstName = Console.ReadLine();
 
-                //Добавляем сотрудника в новый отдел
-                organization.AddEmployeeToDepartment(department, employee);
+            //    Console.Write("Имя: ");
+            //    string secondName = Console.ReadLine();
 
-                //Выводим всю информацию на экран консоли
-                Console.WriteLine(organization);
-                Console.ReadKey();
-                Console.Clear();
-            }
+            //    Console.Write("Возраст: ");
+            //    int age = int.Parse(Console.ReadLine());
+
+            //    Console.Write("Количество проектов: ");
+            //    int projects = int.Parse(Console.ReadLine());
+
+            //    //Создадим экземпляр класса Employee
+            //    Employee employee = new Employee(secondName,firstName,age,projects);
+
+            //    //Добавим нового сотрудника к списку всех сотрудников
+            //    organization.AddEmployeeToEmployees(employee);
+
+            //    Console.Write("Введите название отдела для данного сотрудника: ");
+            //    string name = Console.ReadLine();
+
+            //    //Находим отдел в списке всех отделов
+            //    Department department = organization.FindDepartment(name);
+
+            //    //Добавляем сотрудника в новый отдел
+            //    organization.AddEmployeeToDepartment(department, employee);
+
+            //    //Выводим всю информацию на экран консоли
+            //    Console.WriteLine(organization);
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //}
         }
     }
 }

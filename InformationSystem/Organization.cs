@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using System.Xml;
+using System;
 
 namespace InformationSystem
 {
@@ -222,6 +220,37 @@ namespace InformationSystem
                             new XElement("Контингент", department.Contingent)));
             }
             xDoc.Save("departments.xml");
+        }
+
+        internal List<Employee> EmployeesFromXml()
+        {
+            List<Employee> list = new List<Employee>();
+            return list;
+        }
+
+        internal List<Department> DepartmentsFromXml()
+        {
+            List<Department> list = new List<Department>();
+            XDocument xdoc = XDocument.Load("departments.xml");
+            foreach (XElement _department in xdoc.Element("Departments").Elements("Department"))
+            {
+                XElement Id = _department.Element("Id");
+                XElement DepartmentName = _department.Element("Отдел");
+                XElement CreationDate = _department.Element("Создан");
+                XElement Contingent = _department.Element("Контингент");
+
+                Department department = new Department(
+                    _department.Value,
+                    DepartmentName.Value,
+                    CreationDate.Value,
+                    Contingent.Value);
+                Console.WriteLine(department);
+                Console.WriteLine();
+                list.Add(department);
+                Console.WriteLine(list);
+                Console.ReadKey();
+            }
+            return list;
         }
         #endregion
 
