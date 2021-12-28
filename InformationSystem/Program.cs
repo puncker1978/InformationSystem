@@ -89,9 +89,9 @@ namespace InformationSystem
         }
         static void Main(string[] args)
         {
-            #region Заполнение xml-файла тестовыми данными
-            //Создали экземпляр класса Organization
+            #region Заполнение xml-файлов тестовыми данными
             {
+                //Создали экземпляр класса Organization
                 Organization organization = new Organization();
 
                 //Создали экземпляр класа Random

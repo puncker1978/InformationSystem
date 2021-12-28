@@ -224,7 +224,7 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод разбора xml-файла, содержащего сведения обо всех отделах
+        /// Метод разбора xml-файла, содержащего сведения о всех сотрудниах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
         internal List<Employee> EmployeesFromXml()
@@ -234,7 +234,7 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод разбора xml-файла, содержащего сведения о всех сотрудниках
+        /// Метод разбора xml-файла, содержащего сведения обо всех отделах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
         internal List<Department> DepartmentsFromXml()
@@ -262,7 +262,6 @@ namespace InformationSystem
             return list;
         }
         #endregion
-
         #endregion
     }
 }
