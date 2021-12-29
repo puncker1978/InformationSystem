@@ -142,17 +142,17 @@ namespace InformationSystem
             {
                 Organization organization = new Organization();
                 organization.DepartmentsFromXml();
-                Console.WriteLine(organization.Departments);
+                organization.ShowAllDepartments();
                 Console.ReadKey();
                 Console.Clear();
-                
+
                 organization.EmployeesFromXml();
-                Console.WriteLine(organization.Employees);
+                organization.ShowAllEmployees();
                 Console.ReadKey();
             }
 
 
-            //#region Поиск сотрудников или отделов
+            #region Поиск сотрудников или отделов
             ////Поиск отдела
             //{
             //    Console.WriteLine("Поиск отдела");
@@ -187,9 +187,9 @@ namespace InformationSystem
             //    Console.ReadKey();
             //    Console.Clear();
             //}
-            //#endregion
+            #endregion
 
-            //#region Редактирование сотрудников или отделов
+            #region Редактирование сотрудников или отделов
             ////Редактирование отдела. Будем менять название отдела
             ////Метод для переименования отделов
             //{
@@ -249,7 +249,7 @@ namespace InformationSystem
             //    //Console.Clear();
             //}
 
-            //#endregion
+            #endregion
 
             ////Удаление отдела
             //{

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Xml.Linq;
 using System;
 
 namespace InformationSystem
@@ -154,9 +153,9 @@ namespace InformationSystem
         }
         #endregion
 
-        #region Метод вывода информации о всех отделах и всех сотрудниках
+        #region Методы вывода информации о всех отделах и/или всех сотрудниках
         /// <summary>
-        /// Метод выводит всю информацию на экран консоли
+        /// Метод выводит всю информацию об отделах и сотрудниках на экран консоли
         /// </summary>
         public override string ToString()
         {
@@ -183,104 +182,35 @@ namespace InformationSystem
             }
             return str;
         }
-        #endregion
-        #endregion
-
-        #region Специальные методы для работы с xml-файлами
-        /// <summary>
-        /// Метод добавления списка сотрудников в xml-файл
-        /// </summary>
-        internal void AddEmployeesToXml()
-        {
-            XDocument xDoc = XDocument.Load("employees.xml");
-            XElement root = xDoc.Element("Employees");
-            foreach (Employee employee in Employees)
-            {
-                root.Add(new XElement("Employee",
-                    new XElement("Id", employee.Id),
-                    new XElement("Фамилия", employee.SecondName),
-                    new XElement("Имя", employee.FirstName),
-                    new XElement("Возраст", employee.Age),
-                    new XElement("Зарплата", employee.Total),
-                    new XElement("Проекты", employee.Projects),
-                    new XElement("Отдел", employee.IdDepartment)));
-            }
-            xDoc.Save("employees.xml");
-        }
 
         /// <summary>
-        /// Метод добавления списка отделов в xml-файл
+        /// Метод выводит всю информацию обо всех отделах на экран консоли
         /// </summary>
-        internal void AddDepartmentsToXml()
+        internal void ShowAllDepartments()
         {
-            XDocument xDoc = XDocument.Load("departments.xml");
-            XElement root = xDoc.Element("Departments");
+            Console.WriteLine($"№ Отдела                                    Отдел          Создан                Контингент");
             foreach (Department department in Departments)
             {
-                root.Add(new XElement("Department",
-                            new XElement("Id", department.Id),
-                            new XElement("Отдел", department.DepartmentName),
-                            new XElement("Создан", department.CreationDate),
-                            new XElement("Контингент", department.Contingent)));
+                Console.WriteLine($"{department.Id}" +
+                    $"{department.DepartmentName,15}" +
+                    $"{department.CreationDate.Date,25}" +
+                    $"{department.Contingent,10}");
             }
-            xDoc.Save("departments.xml");
         }
 
-        /// <summary>
-        /// Метод разбора xml-файла, содержащего сведения о всех сотрудниах
-        /// </summary>
-        /// <returns>Коллекция сотрудников</returns>
-        internal List<Employee> EmployeesFromXml()
+        internal void ShowAllEmployees()
         {
-            List<Employee> list = new List<Employee>();
-            XDocument xDoc = XDocument.Load("employees.xml");
-            foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
+            Console.WriteLine($"Фамилия       Имя         Возраст    Проектов    Зарплата");
+            foreach (Employee employee in Employees)
             {
-                XElement Id = _employee.Element("Id");
-                XElement SecondName = _employee.Element("Фамилия");
-                XElement FirstName = _employee.Element("Имя");
-                XElement Age = _employee.Element("Возраст");
-                XElement Total = _employee.Element("Зарплата");
-                XElement Projects = _employee.Element("Проекты");
-                XElement IdDepartment = _employee.Element("Отдел");
-
-                Employee employee = new Employee(
-                    Id.Value,
-                    SecondName.Value,
-                    FirstName.Value,
-                    int.Parse(Age.Value),
-                    IdDepartment.Value,
-                    int.Parse(Projects.Value),
-                    int.Parse(Total.Value));
-                list.Add(employee);
+                Console.WriteLine($"{employee.SecondName}" +
+                    $"{employee.FirstName,10}" +
+                    $"{employee.Age,10}" +
+                    $"{employee.Projects,10}" +
+                    $"{employee.Total,15}");
             }
-            return list;
         }
-
-        /// <summary>
-        /// Метод разбора xml-файла, содержащего сведения обо всех отделах
-        /// </summary>
-        /// <returns>Коллекция сотрудников</returns>
-        internal List<Department> DepartmentsFromXml()
-        {
-            List<Department> list = new List<Department>();
-            XDocument xDoc = XDocument.Load("departments.xml");
-            foreach (XElement _department in xDoc.Element("Departments").Elements("Department"))
-            {
-                XElement Id = _department.Element("Id");
-                XElement DepartmentName = _department.Element("Отдел");
-                XElement CreationDate = _department.Element("Создан");
-                XElement Contingent = _department.Element("Контингент");
-
-                Department department = new Department(
-                    Id.Value,
-                    DepartmentName.Value,
-                    CreationDate.Value,
-                    Contingent.Value);
-                list.Add(department);
-            }
-            return list;
-        }
+        #endregion
         #endregion
         #endregion
     }
