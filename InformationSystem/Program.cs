@@ -142,7 +142,13 @@ namespace InformationSystem
             {
                 Organization organization = new Organization();
                 organization.DepartmentsFromXml();
+                Console.WriteLine(organization.Departments);
+                Console.ReadKey();
+                Console.Clear();
+                
                 organization.EmployeesFromXml();
+                Console.WriteLine(organization.Employees);
+                Console.ReadKey();
             }
 
 

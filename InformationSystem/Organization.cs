@@ -163,10 +163,12 @@ namespace InformationSystem
             string str = "";
             foreach (Department department in Departments)
             {
-                str += $"{department.Id}\t" +
-                    $"{department.DepartmentName}\t" +
-                    $"{department.CreationDate}\t" +
-                    $"{department.Contingent}\n";
+                str += $"====================================================\n" +
+                    $"№ Отдела:\t{department.Id}\n" +
+                    $"Наименование:\t{department.DepartmentName}\n" +
+                    $"Основан:\t{department.CreationDate}\n" +
+                    $"Контингент:\t{department.Contingent}\n" +
+                    $"----------------------------------------------------\n";
                 foreach (Employee employee in employees)
                 {
                     if (department.Id == employee.IdDepartment)
