@@ -200,7 +200,8 @@ namespace InformationSystem
                     new XElement("Имя", employee.FirstName),
                     new XElement("Возраст", employee.Age),
                     new XElement("Зарплата", employee.Total),
-                    new XElement("Проекты", employee.Projects)));
+                    new XElement("Проекты", employee.Projects),
+                    new XElement("Отдел", employee.IdDepartment)));
             }
             xDoc.Save("employees.xml");
         }
@@ -230,6 +231,27 @@ namespace InformationSystem
         internal List<Employee> EmployeesFromXml()
         {
             List<Employee> list = new List<Employee>();
+            XDocument xDoc = XDocument.Load("employees.xml");
+            foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
+            {
+                XElement Id = _employee.Element("Id");
+                XElement SecondName = _employee.Element("Фамилия");
+                XElement FirstName = _employee.Element("Имя");
+                XElement Age = _employee.Element("Возраст");
+                XElement Total = _employee.Element("Зарплата");
+                XElement Projects = _employee.Element("Проекты");
+                XElement IdDepartment = _employee.Element("Отдел");
+
+                Employee employee = new Employee(
+                    Id.Value,
+                    SecondName.Value,
+                    FirstName.Value,
+                    int.Parse(Age.Value),
+                    IdDepartment.Value,
+                    int.Parse(Projects.Value),
+                    int.Parse(Total.Value));
+                list.Add(employee);
+            }
             return list;
         }
 
@@ -240,8 +262,8 @@ namespace InformationSystem
         internal List<Department> DepartmentsFromXml()
         {
             List<Department> list = new List<Department>();
-            XDocument xdoc = XDocument.Load("departments.xml");
-            foreach (XElement _department in xdoc.Element("Departments").Elements("Department"))
+            XDocument xDoc = XDocument.Load("departments.xml");
+            foreach (XElement _department in xDoc.Element("Departments").Elements("Department"))
             {
                 XElement Id = _department.Element("Id");
                 XElement DepartmentName = _department.Element("Отдел");
@@ -249,15 +271,11 @@ namespace InformationSystem
                 XElement Contingent = _department.Element("Контингент");
 
                 Department department = new Department(
-                    _department.Value,
+                    Id.Value,
                     DepartmentName.Value,
                     CreationDate.Value,
                     Contingent.Value);
-                Console.WriteLine(department);
-                Console.WriteLine();
                 list.Add(department);
-                Console.WriteLine(list);
-                Console.ReadKey();
             }
             return list;
         }

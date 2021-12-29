@@ -84,10 +84,10 @@ namespace InformationSystem
         /// <returns>Отдел</returns>
         public override string ToString()
         {
-            return $"№ Отдела\t{this.Id}\n" +
-                $"Наименование отдела\t{this.DepartmentName}\n" +
-                $"Дата основания отдела\t{this.CreationDate.Date}\n" +
-                $"Количество сотрудников\t{this.Contingent}";
+            return $"№ Отдела:\t{this.Id}\n" +
+                $"Наименование отдела:\t{this.DepartmentName}\n" +
+                $"Дата основания отдела:\t{this.CreationDate.Date}\n" +
+                $"Количество сотрудников:\t{this.Contingent}\n";
         }
 
         /// <summary>

@@ -142,7 +142,10 @@ namespace InformationSystem
             {
                 Organization organization = new Organization();
                 organization.DepartmentsFromXml();
+                organization.EmployeesFromXml();
             }
+
+
             //#region Поиск сотрудников или отделов
             ////Поиск отдела
             //{
