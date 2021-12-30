@@ -140,12 +140,14 @@ namespace InformationSystem
             #endregion
 
             {
+                Console.WriteLine("Отделы:");
                 Organization organization = new Organization();
                 organization.DepartmentsFromXml();
                 organization.ShowAllDepartments();
                 Console.ReadKey();
                 Console.Clear();
 
+                Console.WriteLine("Сотрудники:");
                 organization.EmployeesFromXml();
                 organization.ShowAllEmployees();
                 Console.ReadKey();
