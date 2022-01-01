@@ -108,7 +108,13 @@ namespace InformationSystem
             this.Total = salary * this.Projects;
         }
 
-        internal Employee(string id, string secondName, string firstName, int age, string idDepartment, int projects, int total)
+        internal Employee(string id,
+                          string secondName,
+                          string firstName,
+                          int age,
+                          string idDepartment,
+                          int projects,
+                          int total)
         {
             this.Id = id;
             this.SecondName= secondName;

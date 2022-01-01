@@ -139,6 +139,7 @@ namespace InformationSystem
             }
             #endregion
 
+            #region Выводим всю информацию об отделах и сотрудниках
             {
                 Console.WriteLine("Отделы:");
                 Organization organization = new Organization();
@@ -151,44 +152,49 @@ namespace InformationSystem
                 organization.EmployeesFromXml();
                 organization.ShowAllEmployees();
                 Console.ReadKey();
+                Console.Clear();
             }
-
+            #endregion
 
             #region Поиск сотрудников или отделов
-            ////Поиск отдела
-            //{
-            //    Console.WriteLine("Поиск отдела");
-            //    Console.Write("Введите название отдела: ");
-            //    string name = Console.ReadLine();
-            //    Department _department = organization.FindDepartment(name);
-            //    if (_department != null)
-            //    {
-            //        Console.WriteLine($"Результат поиска:\n{_department}");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"Отдел {name} не найден");
-            //    }
-            //    Console.ReadKey();
-            //    Console.Clear();
-            //}
+            //Поиск отдела
+            {
+                Organization organization = new Organization();
+                organization.DepartmentsFromXml();
+                Console.WriteLine("Поиск отдела");
+                Console.Write("Введите название отдела: ");
+                string name = Console.ReadLine();
+                Department _department = organization.FindDepartment(name);
+                if (_department != null)
+                {
+                    Console.WriteLine($"Результат поиска:\n{_department}");
+                }
+                else
+                {
+                    Console.WriteLine($"Отдел {name} не найден");
+                }
+                Console.ReadKey();
+                Console.Clear();
+            }
 
-            ////Поиск сотрудника
-            //{
-            //    Console.Write("Введите имя или фамилию сотрудника: ");
-            //    string name = Console.ReadLine();
-            //    Employee _employee = organization.FindEmployee(name);
-            //    if (_employee != null)
-            //    {
-            //        Console.WriteLine($"Результат поиска:\n{_employee}");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
-            //    }
-            //    Console.ReadKey();
-            //    Console.Clear();
-            //}
+            //Поиск сотрудника
+            {
+                Organization organization = new Organization();
+                organization.EmployeesFromXml();
+                Console.Write("Введите имя или фамилию сотрудника: ");
+                string name = Console.ReadLine();
+                Employee _employee = organization.FindEmployee(name);
+                if (_employee != null)
+                {
+                    Console.WriteLine($"Результат поиска:\n{_employee}");
+                }
+                else
+                {
+                    Console.WriteLine($"Сотрудник с именем/фамилией {name} не найден");
+                }
+                Console.ReadKey();
+                Console.Clear();
+            }
             #endregion
 
             #region Редактирование сотрудников или отделов
