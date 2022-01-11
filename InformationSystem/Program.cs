@@ -113,8 +113,8 @@ namespace InformationSystem
                     for (j = 0; j < 5; j++)
                     {
                         //Инициализация экземпляра класса Employee
-                        Employee employee = new Employee($"Фамилия {KantorPairs(i, j)}",
-                            $"Имя {KantorPairs(i, j)}", rnd.Next(18, 70), rnd.Next(1, 3));
+                        Employee employee = new Employee($"Фамилия {rnd.Next(1,10)}",
+                            $"Имя {rnd.Next(1,10)}", rnd.Next(18, 70), rnd.Next(1, 3));
 
                         //Добавляем сотрудника в список всех сотрудников
                         organization.AddEmployeeToEmployees(employee);
