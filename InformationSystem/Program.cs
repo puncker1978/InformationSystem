@@ -237,7 +237,7 @@ namespace InformationSystem
                 Console.Clear();
                 Console.WriteLine("Обновлённый список отделов");
                 Console.WriteLine(organization);
-                File.Delete("departments.xml");//Удаляем старый файл
+                //File.Delete("departments.xml");//Удаляем старый файл
                 organization.AddDepartmentsToXml();//Сохраняем обновлённый список отделов в xml-файл
                 Console.ReadKey();
                 Console.Clear();
