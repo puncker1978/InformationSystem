@@ -224,6 +224,7 @@ namespace InformationSystem
                 Console.Clear();
 
                 Console.Write("Введите новое название отдела: ");
+                
                 string newDepartmentName = Console.ReadLine();
                 //Меняем информацию об отделе
                 _department.EditDepartment(newDepartmentName);
