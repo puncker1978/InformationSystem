@@ -49,7 +49,7 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод разбора xml-файла, содержащего сведения обо всех сотрудниах
+        /// Метод чтения xml-файла в коллекцию сведений обо всех сотрудниах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
         internal List<Employee> EmployeesFromXml()
@@ -79,7 +79,7 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод разбора xml-файла, содержащего сведения обо всех отделах
+        /// Метод чтения xml-файла в коллекцию сведений обо всех отделах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
         internal List<Department> DepartmentsFromXml()
@@ -100,6 +100,26 @@ namespace InformationSystem
                 Departments.Add(department);
             }
             return Departments;
+        }
+
+        /// <summary>
+        /// Метод удаляет отдел из списка всех отделов в xml-файле
+        /// </summary>
+        /// <param name="name">Название отдела</param>
+        internal void DeleteDepartmentFromXml(string name)
+        {
+            XDocument xDoc = XDocument.Load("departments.xml");
+            XElement Departments = xDoc.Element("Departments");
+
+            foreach (XElement _department in Departments.Elements("Departments"))
+            {
+                // изменяем название и цену
+                if (_department.Value == name)
+                {
+                    _department.Remove();
+                }
+            }
+            xDoc.Save("departments.xml");
         }
         #endregion
     }

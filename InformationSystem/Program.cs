@@ -201,47 +201,47 @@ namespace InformationSystem
             #region Редактирование сотрудников или отделов
             //Редактирование отдела. Будем менять название отдела
             //Метод для переименования отделов
-            {
-                Organization organization = new Organization();
-                organization.DepartmentsFromXml();//Читаем список всех отделов из xml-файла
-                Console.WriteLine("Поиск отдела для переименования");
-                Console.Write("Введите название отдела для переименования: ");
-                string oldDepartmentName = Console.ReadLine();
-                Department _department = organization.FindDepartment(oldDepartmentName);
-                if (_department != null)
-                {
-                    Console.WriteLine($"Результат поиска:\n{_department}");//Выводим на экран информацию о найденном отделе
-                }
-                else
-                {
-                    Console.WriteLine($"Отдел {oldDepartmentName} не найден");
-                }
+            //{
+            //    Organization organization = new Organization();
+            //    organization.DepartmentsFromXml();//Читаем список всех отделов из xml-файла
+            //    Console.WriteLine("Поиск отдела для переименования");
+            //    Console.Write("Введите название отдела для переименования: ");
+            //    string oldDepartmentName = Console.ReadLine();
+            //    Department _department = organization.FindDepartment(oldDepartmentName);
+            //    if (_department != null)
+            //    {
+            //        Console.WriteLine($"Результат поиска:\n{_department}");//Выводим на экран информацию о найденном отделе
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"Отдел {oldDepartmentName} не найден");
+            //    }
 
-                //Удаляем из списка информацию о старом отделе
-                organization.Departments.Remove(_department);
+            //    //Удаляем из списка информацию о старом отделе
+            //    organization.Departments.Remove(_department);
 
-                Console.ReadKey();
-                Console.Clear();
+            //    Console.ReadKey();
+            //    Console.Clear();
 
-                Console.Write("Введите новое название отдела: ");
-                
-                string newDepartmentName = Console.ReadLine();
-                //Меняем информацию об отделе
-                _department.EditDepartment(newDepartmentName);
+            //    Console.Write("Введите новое название отдела: ");
 
-                Console.WriteLine($"Изменённый отдел:\n{_department}");
+            //    string newDepartmentName = Console.ReadLine();
+            //    //Меняем информацию об отделе
+            //    _department.EditDepartment(newDepartmentName);
 
-                //Добавляем обновлённый отдел к списку всех отделов
-                organization.Departments.Add(_department);
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine("Обновлённый список отделов");
-                Console.WriteLine(organization);
-                //File.Delete("departments.xml");//Удаляем старый файл
-                organization.AddDepartmentsToXml();//Сохраняем обновлённый список отделов в xml-файл
-                Console.ReadKey();
-                Console.Clear();
-            }
+            //    Console.WriteLine($"Изменённый отдел:\n{_department}");
+
+            //    //Добавляем обновлённый отдел к списку всех отделов
+            //    organization.Departments.Add(_department);
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //    Console.WriteLine("Обновлённый список отделов");
+            //    Console.WriteLine(organization);
+            //    //File.Delete("departments.xml");//Удаляем старый файл
+            //    organization.AddDepartmentsToXml();//Сохраняем обновлённый список отделов в xml-файл
+            //    Console.ReadKey();
+            //    Console.Clear();
+            //}
 
             ////Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
             ////Метод переименования сотрудника
@@ -270,16 +270,19 @@ namespace InformationSystem
 
             #endregion
 
-            ////Удаление отдела
-            //{
-            //    Console.WriteLine(organization);
-            //    Console.Write("Введите название отдела для удаления: ");
-            //    string name = Console.ReadLine();
-            //    organization.DeleteDepartment(name);
-            //    Console.WriteLine(organization);
-            //    Console.ReadKey();
-            //    Console.Clear();
-            //}
+            //Удаление данных об отделе из xml-файла
+            {
+                Organization organization = new Organization();
+                organization.DepartmentsFromXml();//Прочитали информацию обо всех отделах из xml-файла
+                Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
+                Console.Write("Введите название отдела для удаления: ");
+                string name = Console.ReadLine();
+                organization.DeleteDepartmentFromXml(name);//Удаляем отдел из xml-файла
+                organization.DepartmentsFromXml();//Читаем информацию из обновлённого файла
+                Console.WriteLine(organization);//Выводим её на экран
+                Console.ReadKey();
+                Console.Clear();
+            }
 
             ////Удаление сотрудника
             //{
