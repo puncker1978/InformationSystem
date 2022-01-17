@@ -44,7 +44,9 @@ namespace InformationSystem
         internal List<Employee> sortedEmployeesByDepartmentAndAgeAndTotal()
         {
             Employees = (List<Employee>)(from employee in Employees
-                                         orderby employee.Age,
+                                         from department in Departments
+                                         orderby department.DepartmentName,
+                                         employee.Age,
                                          employee.Total
                                          select Employees);
 
