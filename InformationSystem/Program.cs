@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace InformationSystem
 {
@@ -80,7 +79,7 @@ namespace InformationSystem
         ///  2   Имя_2     Фамилия_2          21         Отдел_2            20000                      3 
         ///  5   Имя_5     Фамилия_5          22         Отдел_2            20000                      3 
         #endregion
-        
+
         //Статический метод вычисления номера пары неотрицательных
         //целых чисел (Канторовская нумерация пар)
         static int KantorPairs(int x, int y)
@@ -114,8 +113,8 @@ namespace InformationSystem
                     for (j = 0; j < 5; j++)
                     {
                         //Инициализация экземпляра класса Employee
-                        Employee employee = new Employee($"Фамилия {rnd.Next(1,10)}",
-                            $"Имя {rnd.Next(1,10)}", rnd.Next(18, 70), rnd.Next(1, 3));
+                        Employee employee = new Employee($"Фамилия {rnd.Next(1, 10)}",
+                            $"Имя {rnd.Next(1, 10)}", rnd.Next(18, 70), rnd.Next(1, 3));
 
                         //Добавляем сотрудника в список всех сотрудников
                         organization.AddEmployeeToEmployees(employee);
@@ -343,5 +342,5 @@ namespace InformationSystem
             //    Console.Clear();
             //}
         }
-        }
+    }
 }

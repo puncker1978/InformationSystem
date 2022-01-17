@@ -117,7 +117,7 @@ namespace InformationSystem
                           int total)
         {
             this.Id = id;
-            this.SecondName= secondName;
+            this.SecondName = secondName;
             this.FirstName = firstName;
             this.Age = age;
             this.IdDepartment = idDepartment;

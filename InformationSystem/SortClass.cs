@@ -17,8 +17,8 @@ namespace InformationSystem
         internal List<Employee> sortedEmployeesByAge()
         {
             Employees = (List<Employee>)(from employee in Employees
-                              orderby employee.Age
-                              select Employees);
+                                         orderby employee.Age
+                                         select Employees);
 
             return Employees;
         }
@@ -31,7 +31,7 @@ namespace InformationSystem
         {
             Employees = (List<Employee>)(from employee in Employees
                                          orderby employee.Age,
-                                         employee.Total 
+                                         employee.Total
                                          select Employees);
 
             return Employees;
