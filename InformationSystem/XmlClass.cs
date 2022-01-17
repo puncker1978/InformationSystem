@@ -111,9 +111,8 @@ namespace InformationSystem
             XDocument xDoc = XDocument.Load("departments.xml");
             XElement Departments = xDoc.Element("Departments");
 
-            foreach (XElement _department in Departments.Elements("Departments"))
+            foreach (XElement _department in Departments.Elements("Department"))
             {
-                // изменяем название и цену
                 if (_department.Value == name)
                 {
                     _department.Remove();
