@@ -117,7 +117,10 @@ namespace InformationSystem
 
             foreach (XElement _department in Departments.Elements("Department"))
             {
-               
+                if (_department.Element("Отдел").Value == name)
+                {
+                    _department.Remove();
+                }
             }
             xDoc.Save("departments.xml");
         }
