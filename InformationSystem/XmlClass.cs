@@ -124,6 +124,51 @@ namespace InformationSystem
             }
             xDoc.Save("departments.xml");
         }
+
+        /// <summary>
+        /// Редактирование названия отдела
+        /// </summary>
+        /// <param name="oldDepartmentName">Старое название отдела</param>
+        /// <param name="newDepartmentName">Новое название отдела</param>
+        internal void EditDepartment(string oldDepartmentName, string newDepartmentName)
+        {
+            XDocument xDoc = XDocument.Load("departments.xml");
+            XElement Departments = xDoc.Element("Departments");
+            foreach (XElement _department in Departments.Elements("Department"))
+            {
+                if (_department.Element("Отдел").Value == oldDepartmentName)
+                {
+                    _department.Element("Отдел").Value = newDepartmentName;
+                }
+            }
+            xDoc.Save("departments.xml");
+        }
+
+        /// <summary>
+        /// Метод редактирования количества проектов, закреплённых за сотрудников
+        /// </summary>
+        /// <param name="secondName">Фамилия сотрудника</param>
+        /// <param name="firstName">Имя сотрудника</param>
+        /// <param name="projects">Новое количество проектов</param>
+        internal void EditEmployee(string secondName, string firstName, int projects)
+        {
+            XDocument xDoc = XDocument.Load("employees.xml");
+            XElement Employees = xDoc.Element("Employees");
+            foreach (XElement _employee in Employees.Elements("Employee"))
+            {
+                if ((_employee.Element("Фамилия").Value == secondName) &
+                    (_employee.Element("Имя").Value == firstName))
+                {
+                    _employee.Element("Проекты").Value = projects.ToString();
+                    
+                    Employee employee = new Employee(projects);
+
+                    _employee.Element("Зарплата").Value = employee.Total.ToString();
+                }
+            }
+            xDoc.Save("employees.xml");
+        }
+
         #endregion
     }
 }

@@ -90,6 +90,7 @@ namespace InformationSystem
         /// Итоговая заработная плата. Расчитывается как произведение количества проектов на ставку заработной платы.
         /// </summary>
         internal int Total { get => total; set => total = value; }
+
         #endregion
 
         #region Конструкторы
@@ -112,6 +113,25 @@ namespace InformationSystem
             this.Total = salary * this.Projects;
         }
 
+        /// <summary>
+        /// Конструктор класса для изменения заработной платы в зависимости от количества проектов
+        /// </summary>
+        /// <param name="projects">Количество проектов</param>
+        internal Employee(int projects)
+        {
+            this.Total = salary * projects;
+        }
+
+        /// <summary>
+        /// Конструктор для создания эземпляра класса Employee при чтении из xml-файла
+        /// </summary>
+        /// <param name="id">Уникальный идентификационный номер сотрудника</param>
+        /// <param name="secondName">Фамилия сотрудника</param>
+        /// <param name="firstName">Имя сотрудника</param>
+        /// <param name="age">Возраст сотрудника</param>
+        /// <param name="idDepartment">Уникальный идентификационный номер отдела к которому прикреплён сотрудник</param>
+        /// <param name="projects">Количество проектов, закреплённых за сотрудником</param>
+        /// <param name="total">Заработная плата сотрудника</param>
         internal Employee(string id,
                           string secondName,
                           string firstName,
