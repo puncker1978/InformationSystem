@@ -18,7 +18,7 @@ namespace InformationSystem
         /// Сортировка списка сотрудников по полю "Возраст"
         /// </summary>
         /// <returns>Отсортированный список по полю "Возраст"</returns>
-        internal List<Employee> sortedEmployeesByAge()
+        internal List<Employee> SortedEmployeesByAge()
         {
             Employees = (List<Employee>)(from employee in Employees
                                          orderby employee.Age
@@ -31,7 +31,7 @@ namespace InformationSystem
         /// Сортировка списка сотрудников по двум полям: "Возраст" и "Заработная плата"
         /// </summary>
         /// <returns>Отсортированный список сотрудников по двум полям</returns>
-        internal List<Employee> sortedEmployeesByAgeAndTotal()
+        internal List<Employee> SortedEmployeesByAgeAndTotal()
         {
             Employees = (List<Employee>)(from employee in Employees
                                          orderby employee.Age,
@@ -41,7 +41,7 @@ namespace InformationSystem
             return Employees;
         }
 
-        internal List<Employee> sortedEmployeesByDepartmentAndAgeAndTotal()
+        internal List<Employee> SortedEmployeesByDepartmentAndAgeAndTotal()
         {
             Employees = (List<Employee>)(from employee in Employees
                                          from department in Departments
