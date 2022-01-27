@@ -113,9 +113,7 @@ namespace InformationSystem
         internal void DeleteDepartmentFromXml(string name)
         {
             XDocument xDoc = XDocument.Load("departments.xml");
-            XElement Departments = xDoc.Element("Departments");
-
-            foreach (XElement _department in Departments.Elements("Department"))
+            foreach (XElement _department in xDoc.Element("Departments").Elements("Department"))
             {
                 if (_department.Element("Отдел").Value == name)
                 {
@@ -150,14 +148,14 @@ namespace InformationSystem
         /// <param name="secondName">Фамилия сотрудника</param>
         /// <param name="firstName">Имя сотрудника</param>
         /// <param name="projects">Новое количество проектов</param>
-        internal void EditEmployee(string secondName, string firstName, int projects)
+        internal void EditEmployee(string name, int projects)
         {
             XDocument xDoc = XDocument.Load("employees.xml");
             XElement Employees = xDoc.Element("Employees");
             foreach (XElement _employee in Employees.Elements("Employee"))
             {
-                if ((_employee.Element("Фамилия").Value == secondName) &
-                    (_employee.Element("Имя").Value == firstName))
+                if ((_employee.Element("Фамилия").Value == name) ||
+                    (_employee.Element("Имя").Value == name))
                 {
                     _employee.Element("Проекты").Value = projects.ToString();
                     
