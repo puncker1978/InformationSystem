@@ -250,6 +250,7 @@ namespace InformationSystem
 
             #endregion
 
+            #region Удаление сотрудников и отделов
             //Удаление данных об отделе из xml-файла
             {
                 Organization organization = new Organization();
@@ -271,15 +272,27 @@ namespace InformationSystem
                 Console.Clear();
             }
 
-            ////Удаление сотрудника
-            //{
-            //    Console.WriteLine(organization);
-            //    Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
-            //    string name = Console.ReadLine();
-            //    organization.DeleteEmployee(name);
-            //    Console.ReadKey();
-            //    Console.Clear();
-            //}
+            //Удаление сотрудника их xml-файла
+            {
+                Organization organization = new Organization();
+                organization.EmployeesFromXml();//Прочитали информацию обо всех сотрудниках из xml-файла
+                Console.WriteLine(organization);//Вывели информацию обо всех сотрудниках из xml-файла на экран консоли
+                Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
+                string name = Console.ReadLine();
+                if (organization.FindEmployee(name) != null)
+                {
+                    organization.DeleteEmployeeFromXml(name);//Удаляем отдел из xml-файла
+                    Console.WriteLine($"Отдел с названием {name} удалён");
+
+                }
+                else
+                {
+                    Console.WriteLine($"Отдел с названием {name} не найден");
+                }
+                organization.DeleteEmployee(name);
+                Console.ReadKey();
+                Console.Clear();
+            }
 
             ////Добавление нового отдела
             //{
@@ -292,6 +305,8 @@ namespace InformationSystem
             //    Console.ReadKey();
             //    Console.Clear();
             //}
+            #endregion
+
             ////Добавление нового сотрудника
             //{
             //    Console.WriteLine(organization);

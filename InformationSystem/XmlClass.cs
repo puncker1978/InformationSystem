@@ -124,6 +124,23 @@ namespace InformationSystem
         }
 
         /// <summary>
+        /// Метод удаляет сотрудника из списка всех сотрудников
+        /// </summary>
+        /// <param name="name"></param>
+        internal void DeleteEmployeeFromXml(string name)
+        {
+            XDocument xDoc = XDocument.Load("employees.xml");
+            foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
+            {
+                if ((_employee.Element("Фамилия").Value == name) || (_employee.Element("Имя").Value == name))
+                {
+                    _employee.Remove();
+                }
+            }
+            xDoc.Save("employees.xml");
+        }
+
+        /// <summary>
         /// Редактирование названия отдела
         /// </summary>
         /// <param name="oldDepartmentName">Старое название отдела</param>
