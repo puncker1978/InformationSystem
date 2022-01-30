@@ -84,6 +84,22 @@ namespace InformationSystem
         }
 
         /// <summary>
+        /// Метод удаляет из xml-файла всех сотрудников с заданным Id отдела
+        /// </summary>
+        /// <param name="idDepartment">Id отдела сотрудника</param>
+        internal void DeleteDepartmentEmployeesFromXml(Guid idDepartment)
+        {
+            XDocument xDoc = XDocument.Load("employees.xml");
+            foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
+            {
+                if(_employee.Element("Отдел").Value == idDepartment.ToString())
+                {
+                    _employee.Remove();
+                }
+            }
+        }
+
+        /// <summary>
         /// Метод чтения xml-файла в коллекцию сведений обо всех отделах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
@@ -108,20 +124,24 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод удаляет отдел из списка всех отделов в xml-файле
+        /// Метод удаляет отдел из списка всех отделов и возвращает Id удаленного отдела
         /// </summary>
-        /// <param name="name">Название отдела</param>
-        internal void DeleteDepartmentFromXml(string name)
+        /// <param name="name"></param>
+        /// <returns></returns>
+        internal Guid DeleteDepartmentFromXml(string name)
         {
+            string idDepartment = "";
             XDocument xDocDepartment = XDocument.Load("departments.xml");
             foreach (XElement _department in xDocDepartment.Element("Departments").Elements("Department"))
             {
                 if (_department.Element("Отдел").Value == name)
                 {
+                    idDepartment = _department.Element("Id").Value;
                     _department.Remove();
                 }
             }
             xDocDepartment.Save("departments.xml");
+            return Guid.Parse(idDepartment);
         }
 
         /// <summary>
@@ -131,29 +151,15 @@ namespace InformationSystem
         internal void DeleteEmployeeFromXml(string name)
         {
             XDocument xDocEmployee = XDocument.Load("employees.xml");
-            XDocument xDocDepartment = XDocument.Load("departments.xml");
             foreach (XElement _employee in xDocEmployee.Element("Employees").Elements("Employee"))
             {
                 if ((_employee.Element("Фамилия").Value == name) || (_employee.Element("Имя").Value == name))
                 {
-                    foreach (XElement _department in xDocDepartment.Element("Departments").Elements("Department"))
-                    {
-                        if(_employee.Element("Отдел").Value == _department.Element("Id").Value)
-                        {
-                            string strContingent = _department.Element("Контингент").Value;
-                            int contingent = int.Parse(strContingent) - 1;
-                            _department.Element("Контингент").Value = contingent.ToString();
-                        }
-                    }
                     _employee.Remove();
                 }
-                else
-                {
-                    Console.WriteLine($"Сотрудник {name} не найден");
-                }
+               
             }
             xDocEmployee.Save("employees.xml");
-            xDocDepartment.Save("departments.xml");
         }
 
         /// <summary>

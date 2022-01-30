@@ -255,6 +255,7 @@ namespace InformationSystem
             {
                 Organization organization = new Organization();
                 organization.DepartmentsFromXml();//Прочитали информацию обо всех отделах из xml-файла
+                organization.EmployeesFromXml();//Прочитали информацию обо всех сотрудниках из xml-файла
                 Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
                 Console.Write("Введите название отдела для удаления: ");
                 string name = Console.ReadLine();
