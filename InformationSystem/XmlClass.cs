@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.Xml.Linq;
+using System;
 
 namespace InformationSystem
 {
@@ -112,15 +113,15 @@ namespace InformationSystem
         /// <param name="name">Название отдела</param>
         internal void DeleteDepartmentFromXml(string name)
         {
-            XDocument xDoc = XDocument.Load("departments.xml");
-            foreach (XElement _department in xDoc.Element("Departments").Elements("Department"))
+            XDocument xDocDepartment = XDocument.Load("departments.xml");
+            foreach (XElement _department in xDocDepartment.Element("Departments").Elements("Department"))
             {
                 if (_department.Element("Отдел").Value == name)
                 {
                     _department.Remove();
                 }
             }
-            xDoc.Save("departments.xml");
+            xDocDepartment.Save("departments.xml");
         }
 
         /// <summary>
@@ -129,15 +130,30 @@ namespace InformationSystem
         /// <param name="name"></param>
         internal void DeleteEmployeeFromXml(string name)
         {
-            XDocument xDoc = XDocument.Load("employees.xml");
-            foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
+            XDocument xDocEmployee = XDocument.Load("employees.xml");
+            XDocument xDocDepartment = XDocument.Load("departments.xml");
+            foreach (XElement _employee in xDocEmployee.Element("Employees").Elements("Employee"))
             {
                 if ((_employee.Element("Фамилия").Value == name) || (_employee.Element("Имя").Value == name))
                 {
+                    foreach (XElement _department in xDocDepartment.Element("Departments").Elements("Department"))
+                    {
+                        if(_employee.Element("Отдел").Value == _department.Element("Id").Value)
+                        {
+                            string strContingent = _department.Element("Контингент").Value;
+                            int contingent = int.Parse(strContingent) - 1;
+                            _department.Element("Контингент").Value = contingent.ToString();
+                        }
+                    }
                     _employee.Remove();
                 }
+                else
+                {
+                    Console.WriteLine($"Сотрудник {name} не найден");
+                }
             }
-            xDoc.Save("employees.xml");
+            xDocEmployee.Save("employees.xml");
+            xDocDepartment.Save("departments.xml");
         }
 
         /// <summary>
