@@ -109,7 +109,7 @@ namespace InformationSystem
                 {
                     //Инициализация экземпляра класса Department
                     Department department = new Department($"Отдел {KantorPairs(i, j)}",
-                        new DateTime(2021, rnd.Next(1, 12), rnd.Next(1, 28)));
+                        new DateTime(2021, rnd.Next(1, 12), rnd.Next(1, 28)).Date);
 
                     //Добавляем инициализированный отдел в список всех отделов
                     organization.AddDepartmentToDepartments(department);
@@ -308,43 +308,49 @@ namespace InformationSystem
             //}
             #endregion
 
-            ////Добавление нового сотрудника
-            //{
-            //    Console.WriteLine(organization);
-            //    Console.Write("Введите данные о новом сотруднике: ");
+            #region Добавлние сотрудников и отделов
+            //Добавление нового сотрудника
+            {
+                Organization organization = new Organization();
+                organization.EmployeesFromXml();//Прочитали информацию обо всех сотрудниках из xml-файла
+                Console.WriteLine(organization);//Вывели информацию обо всех сотрудниках из xml-файла на экран консоли
+                Console.Write("Введите название нового отдела: ");
+                string name = Console.ReadLine();
+                if (organization.FindDepartment(name) == null)//Если отдел с таким названием не существует
+                {
+                    organization.AddNewEmployeeToXml(name);//Добавляем новый отдел в xml-файл
+                    Console.WriteLine($"Отдел с названием {name} добавлен");
 
-            //    Console.Write("Фамилия: ");
-            //    string firstName = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine($"Отдел с названием {name} уже существует");
+                }
+                Console.ReadKey();
+                Console.Clear();
+            }
 
-            //    Console.Write("Имя: ");
-            //    string secondName = Console.ReadLine();
+            //Добавление нового отдела
+            {
+                Organization organization = new Organization();
+                organization.DepartmentsFromXml();//Прочитали информацию обо всех отделах из xml-файла
+                Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
+                Console.Write("Введите название нового отдела: ");
+                string name = Console.ReadLine();
+                if (organization.FindDepartment(name) == null)//Если отдел с таким названием не существует
+                {
+                    organization.AddNewDepartmentToXml(name);//Добавляем новый отдел в xml-файл
+                    Console.WriteLine($"Отдел с названием {name} добавлен");
 
-            //    Console.Write("Возраст: ");
-            //    int age = int.Parse(Console.ReadLine());
-
-            //    Console.Write("Количество проектов: ");
-            //    int projects = int.Parse(Console.ReadLine());
-
-            //    //Создадим экземпляр класса Employee
-            //    Employee employee = new Employee(secondName,firstName,age,projects);
-
-            //    //Добавим нового сотрудника к списку всех сотрудников
-            //    organization.AddEmployeeToEmployees(employee);
-
-            //    Console.Write("Введите название отдела для данного сотрудника: ");
-            //    string name = Console.ReadLine();
-
-            //    //Находим отдел в списке всех отделов
-            //    Department department = organization.FindDepartment(name);
-
-            //    //Добавляем сотрудника в новый отдел
-            //    organization.AddEmployeeToDepartment(department, employee);
-
-            //    //Выводим всю информацию на экран консоли
-            //    Console.WriteLine(organization);
-            //    Console.ReadKey();
-            //    Console.Clear();
-            //}
+                }
+                else
+                {
+                    Console.WriteLine($"Отдел с названием {name} уже существует");
+                }
+                Console.ReadKey();
+                Console.Clear();
+            }
+            #endregion
         }
     }
 }
