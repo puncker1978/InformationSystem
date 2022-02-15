@@ -357,23 +357,23 @@ namespace InformationSystem
 
             //Добавление нового отдела
             {
-                Organization organization = new Organization();
-                organization.DepartmentsFromXml();//Прочитали информацию обо всех отделах из xml-файла
-                Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
-                Console.Write("Введите название нового отдела: ");
-                string name = Console.ReadLine();
-                if (organization.FindDepartment(name) == null)//Если отдел с таким названием не существует
-                {
-                    organization.AddNewDepartmentToXml(name);//Добавляем новый отдел в xml-файл
-                    Console.WriteLine($"Отдел с названием {name} добавлен");
+                //Organization organization = new Organization();
+                //organization.DepartmentsFromXml();//Прочитали информацию обо всех отделах из xml-файла
+                //Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
+                //Console.Write("Введите название нового отдела: ");
+                //string name = Console.ReadLine();
+                //if (organization.FindDepartment(name) == null)//Если отдел с таким названием не существует
+                //{
+                //    organization.AddNewDepartmentToXml(name);//Добавляем новый отдел в xml-файл
+                //    Console.WriteLine($"Отдел с названием {name} добавлен");
 
-                }
-                else
-                {
-                    Console.WriteLine($"Отдел с названием {name} уже существует");
-                }
-                Console.ReadKey();
-                Console.Clear();
+                //}
+                //else
+                //{
+                //    Console.WriteLine($"Отдел с названием {name} уже существует");
+                //}
+                //Console.ReadKey();
+                //Console.Clear();
             }
             #endregion
         }
