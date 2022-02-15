@@ -54,6 +54,39 @@ namespace InformationSystem
         }
 
         /// <summary>
+        /// Метод добавления одного нового сотрудника в существующий отдел
+        /// </summary>
+        /// <param name="employee">Сотрудник</param>
+        /// <param name="departmentName">Название отдела</param>
+        internal void AddNewEmployeeToXml(Employee employee, string departmentName)
+        {
+            XDocument xDocEmployees = XDocument.Load("employees.xml");
+            XDocument xDocDepartments = XDocument.Load("departments");
+            foreach(XElement _department in xDocDepartments.Element("Departments").Elements("Department"))
+            {
+                if(_department.Element("Отдел").Value == departmentName)
+                {
+                    employee.IdDepartment = _department.Element("Id").Value;
+                }
+                else
+                {
+                    Console.WriteLine($"Отдел с названием {departmentName} не существует");
+                }
+            }
+            xDocDepartments.Save("departments.xml");
+            XElement root = xDocEmployees.Element("Employees");
+                root.Add(new XElement("Employee",
+                    new XElement("Id", employee.Id),
+                    new XElement("Фамилия", employee.SecondName),
+                    new XElement("Имя", employee.FirstName),
+                    new XElement("Возраст", employee.Age),
+                    new XElement("Зарплата", employee.Total),
+                    new XElement("Проекты", employee.Projects),
+                    new XElement("Отдел", employee.IdDepartment)));
+            xDocEmployees.Save("employees.xml");
+        }
+
+        /// <summary>
         /// Метод чтения xml-файла в коллекцию сведений обо всех сотрудниах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
