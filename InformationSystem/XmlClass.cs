@@ -53,7 +53,6 @@ namespace InformationSystem
             xDoc.Save("departments.xml");
         }
 
-
         internal void AddNewDepartmentToXml(Department department)
         {
             XDocument xDoc = XDocument.Load("departments.xml");
@@ -80,12 +79,16 @@ namespace InformationSystem
         internal void AddNewEmployeeToXml(Employee employee, string departmentName)
         {
             XDocument xDocEmployees = XDocument.Load("employees.xml");
-            XDocument xDocDepartments = XDocument.Load("departments");
+            XDocument xDocDepartments = XDocument.Load("departments.xml");
             foreach(XElement _department in xDocDepartments.Element("Departments").Elements("Department"))
             {
                 if(_department.Element("Отдел").Value == departmentName)
                 {
                     employee.IdDepartment = _department.Element("Id").Value;
+                    string oldContingent = _department.Element("Контингент").Value;
+                    int newContingent = int.Parse(oldContingent) + 1;
+                    _department.Element("Контингент").Value = newContingent.ToString();
+                    break;
                 }
                 else
                 {

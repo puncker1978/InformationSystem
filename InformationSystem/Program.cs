@@ -299,7 +299,40 @@ namespace InformationSystem
                 //Console.Clear();
             }
 
-            ////Добавление нового отдела
+            
+            #endregion
+
+            #region Добавлние сотрудников и отделов
+            //Добавление нового сотрудника
+            {
+                Organization organization = new Organization();
+                Console.Write("Введите название отдела, в который хотите добавить сотрудника: ");
+                string departmentName = Console.ReadLine();
+                Console.WriteLine("Введите данные о новом сотруднике");
+
+                Console.Write("Фамилия: ");
+                string secondName = Console.ReadLine();
+
+                Console.Write("Имя: ");
+                string firstName = Console.ReadLine();
+
+                Console.Write("Возраст: ");
+                int age = Byte.Parse(Console.ReadLine());
+
+                Console.Write("Количество проектов: ");
+                int projects = Byte.Parse(Console.ReadLine());
+
+                //Создаём нового сотрудника
+                Employee employee = new Employee(secondName, firstName, age, projects);
+
+                //Добавляем нового сотрудника в существующий отдел в xml-файл
+                organization.AddNewEmployeeToXml(employee, departmentName);
+
+                Console.ReadKey();
+                Console.Clear();
+            }
+
+            //Добавление нового отдела
             {
                 Organization organization = new Organization();
                 Console.Write("Введите название нового отдела: ");
@@ -313,75 +346,6 @@ namespace InformationSystem
                 Console.WriteLine(organization);
                 Console.ReadKey();
                 Console.Clear();
-            }
-            #endregion
-
-            #region Добавлние сотрудников и отделов
-            //Добавление нового сотрудника
-            {
-            //    Organization organization = new Organization();
-            //    organization.EmployeesFromXml();//Прочитали информацию обо всех сотрудниках из xml-файла
-            //    Console.WriteLine(organization);//Вывели информацию обо всех сотрудниках из xml-файла на экран консоли
-            //    Console.Write("Введите название отдела, в который хотите добавить сотрудника: ");
-            //    string departmentName = Console.ReadLine();
-            //    if (organization.FindDepartment(departmentName) != null)//Если отдел с таким названием существует
-            //    {
-            //        Console.WriteLine("Введите данные о новом сотруднике");
-                    
-            //        Console.Write("Фамилия: ");
-            //        string secondName = Console.ReadLine();
-
-            //        Console.Write("Имя: ");
-            //        string firstName = Console.ReadLine();
-
-            //        Console.Write("Возраст: ");
-            //        int age = Byte.Parse(Console.ReadLine());
-
-            //        Console.Write("Количество проектов: ");
-            //        int projects = Byte.Parse(Console.ReadLine());
-
-            //        //Создаём нового сотрудника
-            //        Employee employee = new Employee(secondName, firstName, age, projects);
-
-            //        //Добавляем нового сотрудника в существующий отдел в xml-файл
-            //        organization.AddNewEmployeeToXml(employee, departmentName);
-            //        Console.WriteLine($"Новый сотрудник:/n" +
-            //            $"Id: {employee.Id}/n" +
-            //            $"Фамилия: {employee.SecondName}/n" +
-            //            $"Имя: {employee.FirstName}/n" +
-            //            $"Возраст: {employee.Age}/n" +
-            //            $"Количество проектов: {employee.Projects}/n" +
-            //            $"Зарплата: {employee.Total}/n" +
-            //            $"добавлен в отдел: {departmentName}");
-
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"Отдел с названием {departmentName} уже существует");
-            //    }
-            //    Console.ReadKey();
-            //    Console.Clear();
-            }
-
-            //Добавление нового отдела
-            {
-                //Organization organization = new Organization();
-                //organization.DepartmentsFromXml();//Прочитали информацию обо всех отделах из xml-файла
-                //Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
-                //Console.Write("Введите название нового отдела: ");
-                //string name = Console.ReadLine();
-                //if (organization.FindDepartment(name) == null)//Если отдел с таким названием не существует
-                //{
-                //    organization.AddNewDepartmentToXml(name);//Добавляем новый отдел в xml-файл
-                //    Console.WriteLine($"Отдел с названием {name} добавлен");
-
-                //}
-                //else
-                //{
-                //    Console.WriteLine($"Отдел с названием {name} уже существует");
-                //}
-                //Console.ReadKey();
-                //Console.Clear();
             }
             #endregion
         }
