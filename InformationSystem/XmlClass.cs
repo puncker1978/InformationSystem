@@ -53,6 +53,25 @@ namespace InformationSystem
             xDoc.Save("departments.xml");
         }
 
+
+        internal void AddNewDepartmentToXml(Department department)
+        {
+            XDocument xDoc = XDocument.Load("departments.xml");
+            XElement root = xDoc.Element("Departments");
+
+            if (root != null)
+            {
+                // добавляем новый элемент
+                root.Add(new XElement("Department",
+                            new XElement("Id", department.Id),
+                            new XElement("Отдел", department.DepartmentName),
+                            new XElement("Создан", department.CreationDate),
+                            new XElement("Контингент",department.Contingent)));
+
+                xDoc.Save("departments.xml");
+            }
+        }
+
         /// <summary>
         /// Метод добавления одного нового сотрудника в существующий отдел
         /// </summary>

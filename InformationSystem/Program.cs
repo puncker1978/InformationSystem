@@ -257,58 +257,62 @@ namespace InformationSystem
             #region Удаление сотрудников и отделов
             //Удаление данных об отделе из xml-файла
             {
-                Organization organization = new Organization();
-                organization.DepartmentsFromXmlToCollection();//Прочитали информацию обо всех отделах из xml-файла
-                organization.EmployeesFromXmlToCollection();//Прочитали информацию обо всех сотрудниках из xml-файла
-                Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
-                Console.Write("Введите название отдела для удаления: ");
-                string name = Console.ReadLine();
-                if (organization.FindDepartment(name) != null)
-                {
-                    //Удаляем отдел из xml-файла и забираем его Id
-                    Guid id = organization.DeleteDepartmentFromXml(name);
-                    Console.WriteLine($"Отдел с названием {name} удалён");
-                }
-                else
-                {
-                    Console.WriteLine($"Отдел с названием {name} не найден");
-                }
-                Console.ReadKey();
-                Console.Clear();
+                //Organization organization = new Organization();
+                //organization.DepartmentsFromXmlToCollection();//Прочитали информацию обо всех отделах из xml-файла
+                //organization.EmployeesFromXmlToCollection();//Прочитали информацию обо всех сотрудниках из xml-файла
+                //Console.WriteLine(organization);//Вывели информацию обо всех отделах из xml-файла на экран консоли
+                //Console.Write("Введите название отдела для удаления: ");
+                //string name = Console.ReadLine();
+                //if (organization.FindDepartment(name) != null)
+                //{
+                //    //Удаляем отдел из xml-файла и забираем его Id
+                //    Guid id = organization.DeleteDepartmentFromXml(name);
+                //    Console.WriteLine($"Отдел с названием {name} удалён");
+                //}
+                //else
+                //{
+                //    Console.WriteLine($"Отдел с названием {name} не найден");
+                //}
+                //Console.ReadKey();
+                //Console.Clear();
             }
 
             //Удаление сотрудника их xml-файла
             {
-                Organization organization = new Organization();
-                organization.EmployeesFromXmlToCollection();//Прочитали информацию обо всех сотрудниках из xml-файла
-                Console.WriteLine(organization);//Вывели информацию обо всех сотрудниках из xml-файла на экран консоли
-                Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
-                string name = Console.ReadLine();
-                if (organization.FindEmployee(name) != null)
-                {
-                    organization.DeleteEmployeeFromXml(name);//Удаляем отдел из xml-файла
-                    Console.WriteLine($"Отдел с названием {name} удалён");
+                //Organization organization = new Organization();
+                //organization.EmployeesFromXmlToCollection();//Прочитали информацию обо всех сотрудниках из xml-файла
+                //Console.WriteLine(organization);//Вывели информацию обо всех сотрудниках из xml-файла на экран консоли
+                //Console.Write("Введитте имя или фамилию сотрудника для удаления: ");
+                //string name = Console.ReadLine();
+                //if (organization.FindEmployee(name) != null)
+                //{
+                //    organization.DeleteEmployeeFromXml(name);//Удаляем отдел из xml-файла
+                //    Console.WriteLine($"Отдел с названием {name} удалён");
 
-                }
-                else
-                {
-                    Console.WriteLine($"Отдел с названием {name} не найден");
-                }
-                organization.DeleteEmployee(name);
-                Console.ReadKey();
-                Console.Clear();
+                //}
+                //else
+                //{
+                //    Console.WriteLine($"Отдел с названием {name} не найден");
+                //}
+                //organization.DeleteEmployee(name);
+                //Console.ReadKey();
+                //Console.Clear();
             }
 
             ////Добавление нового отдела
             {
-            //    Console.WriteLine(organization);
-            //    Console.Write("Введите название нового отдела: ");
-            //    string name = Console.ReadLine();
-            //    Department department = new Department(name, DateTime.Now);
-            //    organization.AddDepartmentToDepartments(department);
-            //    Console.WriteLine(organization);
-            //    Console.ReadKey();
-            //    Console.Clear();
+                Organization organization = new Organization();
+                Console.Write("Введите название нового отдела: ");
+                string name = Console.ReadLine();
+
+                //Создаём новый отдел
+                Department department = new Department(name, DateTime.Now);
+
+                //Добавляем вновь созданный отдел в xml-файл
+                organization.AddNewDepartmentToXml(department);
+                Console.WriteLine(organization);
+                Console.ReadKey();
+                Console.Clear();
             }
             #endregion
 
