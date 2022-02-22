@@ -232,25 +232,25 @@ namespace InformationSystem
 
             //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
             {
-            //    Organization organization = new Organization();
-            //    organization.EmployeesFromXml(); //Читаем список всех отделов из xml-файла
-            //    Console.WriteLine("Поиск сотрудника для измения количества проектов");
-            //    Console.Write("Введите фамилию или имя сотрудника: ");
-            //    string name = Console.ReadLine();
-            //    if (organization.FindEmployee(name) != null)
-            //    {
-            //        Console.Write("Новое число проектов: ");
-            //        int projects = int.Parse(Console.ReadLine());
-            //        organization.EditEmployee(name, projects);
-            //        Console.WriteLine($"Количество проектов сотрудника {name} изменено");
+                Organization organization = new Organization();
+                organization.EmployeesFromXmlToCollection(); //Читаем список всех отделов из xml-файла
+                Console.WriteLine("Поиск сотрудника для измения количества проектов");
+                Console.Write("Введите фамилию или имя сотрудника: ");
+                string name = Console.ReadLine();
+                if (organization.FindEmployee(name) != null)
+                {
+                    Console.Write("Новое число проектов: ");
+                    int projects = int.Parse(Console.ReadLine());
+                    organization.EditEmployee(name, projects);
+                    Console.WriteLine($"Количество проектов сотрудника {name} изменено");
 
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"Сотрудник с фамилией или именем {name} не найден");
-            //    }
-            //    Console.ReadKey();
-            //    Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine($"Сотрудник с фамилией или именем {name} не найден");
+                }
+                Console.ReadKey();
+                Console.Clear();
             }
 
             #endregion
