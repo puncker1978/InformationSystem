@@ -90,7 +90,7 @@ namespace InformationSystem
         /// Метод чтения xml-файла в коллекцию сведений обо всех сотрудниах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
-        internal List<Employee> EmployeesFromXml()
+        internal List<Employee> EmployeesFromXmlToCollection()
         {
             XDocument xDoc = XDocument.Load("employees.xml");
             foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
@@ -136,7 +136,7 @@ namespace InformationSystem
         /// Метод чтения xml-файла в коллекцию сведений обо всех отделах
         /// </summary>
         /// <returns>Коллекция сотрудников</returns>
-        internal List<Department> DepartmentsFromXml()
+        internal List<Department> DepartmentsFromXmlToCollection()
         {
             XDocument xDoc = XDocument.Load("departments.xml");
             foreach (XElement _department in xDoc.Element("Departments").Elements("Department"))
