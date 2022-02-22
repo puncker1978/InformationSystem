@@ -193,10 +193,25 @@ namespace InformationSystem
                 {
                     idDepartment = _department.Element("Id").Value;
                     _department.Remove();
+                    break;
                 }
             }
             xDocDepartment.Save("departments.xml");
             return Guid.Parse(idDepartment);
+        }
+
+        /// <summary>
+        /// Метод удалает из xml-файла всех сотрудников из удаляемого одела
+        /// </summary>
+        /// <param name="idDepartment">Id отдела</param>
+        internal void DeleteDepartmentEmployees(Guid idDepartment)
+        {
+            XDocument xDoc = XDocument.Load("employees.xml");
+            foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
+                if (_employee.Element("Отдел").Value == idDepartment.ToString())
+                {
+                    _employee.Remove();
+                }
         }
 
         /// <summary>

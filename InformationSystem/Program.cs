@@ -304,8 +304,13 @@ namespace InformationSystem
             #region Удаление сотрудников и отделов
             //Удаление данных об отделе из xml-файла
             {
-
-                //Console.Clear();
+                Organization organization = new Organization();
+                Console.Write("Введите название отдела, в который хотите удалить: ");
+                string departmentName = Console.ReadLine();
+                Guid Id = organization.DeleteDepartmentFromXml(departmentName);
+                organization.DeleteDepartmentEmployees(Id);
+                Console.ReadKey();
+                Console.Clear();
             }
 
             //Удаление сотрудника их xml-файла
