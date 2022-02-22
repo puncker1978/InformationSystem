@@ -3,6 +3,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 
 using System;
+using System.Collections.Generic;
 
 namespace InformationSystem
 {
@@ -182,16 +183,19 @@ namespace InformationSystem
                 Console.Clear();
             }
 
-            //Поиск сотрудника
+            //Поиск сотрудника. Так как в организации могут быть несколько сотрудников с одинаковыми именами/фамилиями,
+            //то необходимо возвращать список таких сотрудников
             {
                 Organization organization = new Organization();
-                organization.EmployeesFromXml();//Читаем список всех сотрудников из xml-файла
+                organization.EmployeesFromXmlToCollection();//Читаем список всех сотрудников из xml-файла
                 Console.Write("Введите имя или фамилию сотрудника: ");
                 string name = Console.ReadLine();
+
                 Employee _employee = organization.FindEmployee(name);
                 if (_employee != null)
                 {
-                    Console.WriteLine($"Результат поиска:\n{_employee}");//Выводим на экран информацию о найденном сотруднике
+                    //Выводим на экран информацию о найденном сотруднике
+                    Console.WriteLine($"Результат поиска:\n{_employee}");
                 }
                 else
                 {
@@ -206,24 +210,24 @@ namespace InformationSystem
             //Редактирование отдела. Будем менять название отдела.
             //Переименование отдела
             {
-            //    Organization organization = new Organization();
-            //    organization.DepartmentsFromXml();//Читаем список всех отделов из xml-файла
-            //    Console.WriteLine("Поиск отдела для переименования");
-            //    Console.Write("Введите название отдела для переименования: ");
-            //    string oldDepartmentName = Console.ReadLine();
-            //    if (organization.FindDepartment(oldDepartmentName) != null)
-            //    {
-            //        Console.Write("Введите новое название отдела: ");
-            //        string newDepartmentName = Console.ReadLine();
-            //        organization.EditDepartment(oldDepartmentName, newDepartmentName);
-            //        Console.WriteLine("Отдел успешно переименован");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"Отдел с названием {oldDepartmentName} не найден");
-            //    }
-            //    Console.ReadKey();
-            //    Console.Clear();
+                Organization organization = new Organization();
+                organization.DepartmentsFromXmlToCollection();//Читаем список всех отделов из xml-файла в коллекцию
+                Console.WriteLine("Поиск отдела для переименования");
+                Console.Write("Введите название отдела для переименования: ");
+                string oldDepartmentName = Console.ReadLine();
+                if (organization.FindDepartment(oldDepartmentName) != null)
+                {
+                    Console.Write("Введите новое название отдела: ");
+                    string newDepartmentName = Console.ReadLine();
+                    organization.EditDepartment(oldDepartmentName, newDepartmentName);
+                    Console.WriteLine("Отдел успешно переименован");
+                }
+                else
+                {
+                    Console.WriteLine($"Отдел с названием {oldDepartmentName} не найден");
+                }
+                Console.ReadKey();
+                Console.Clear();
             }
 
             //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
