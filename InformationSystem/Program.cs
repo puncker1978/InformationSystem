@@ -307,8 +307,8 @@ namespace InformationSystem
                 Organization organization = new Organization();
                 Console.Write("Введите название отдела, в который хотите удалить: ");
                 string departmentName = Console.ReadLine();
-                Guid Id = organization.DeleteDepartmentFromXml(departmentName);
-                organization.DeleteDepartmentEmployees(Id);
+                Guid idDepartment = organization.DeleteDepartmentFromXml(departmentName);
+                organization.DeleteDepartmentEmployees(idDepartment);
                 Console.ReadKey();
                 Console.Clear();
             }

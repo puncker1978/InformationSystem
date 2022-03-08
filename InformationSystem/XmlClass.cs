@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using System;
+using System.Linq;
 
 namespace InformationSystem
 {
@@ -53,6 +54,10 @@ namespace InformationSystem
             xDoc.Save("departments.xml");
         }
 
+        /// <summary>
+        /// Метод добавляет новый отдел в xml-файл
+        /// </summary>
+        /// <param name="department">Добавляемый отдел</param>
         internal void AddNewDepartmentToXml(Department department)
         {
             XDocument xDoc = XDocument.Load("departments.xml");
@@ -207,11 +212,20 @@ namespace InformationSystem
         internal void DeleteDepartmentEmployees(Guid idDepartment)
         {
             XDocument xDoc = XDocument.Load("employees.xml");
-            foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
-                if (_employee.Element("Отдел").Value == idDepartment.ToString())
-                {
-                    _employee.Remove();
-                }
+            IEnumerable<XElement> tempEmployees = xDoc.Root.Descendants("Employee").Where(
+                t => t.Element("Отдел").Value == idDepartment.ToString());
+            tempEmployees.Remove();
+
+
+
+            //foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
+            //{
+            //    if (_employee.Element("Отдел").Value == idDepartment.ToString())
+            //    {
+            //        _employee.Remove();
+            //    }
+            //}
+            xDoc.Save("employees.xml");
         }
 
         /// <summary>
