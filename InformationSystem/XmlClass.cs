@@ -215,16 +215,6 @@ namespace InformationSystem
             IEnumerable<XElement> tempEmployees = xDoc.Root.Descendants("Employee").Where(
                 t => t.Element("Отдел").Value == idDepartment.ToString());
             tempEmployees.Remove();
-
-
-
-            //foreach (XElement _employee in xDoc.Element("Employees").Elements("Employee"))
-            //{
-            //    if (_employee.Element("Отдел").Value == idDepartment.ToString())
-            //    {
-            //        _employee.Remove();
-            //    }
-            //}
             xDoc.Save("employees.xml");
         }
 
