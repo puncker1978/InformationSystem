@@ -41,6 +41,10 @@ namespace InformationSystem
             return Employees;
         }
 
+        /// <summary>
+        /// Сортировка списка сотрудников по полям: "Отдел", "Возраст" и "Зарплата"
+        /// </summary>
+        /// <returns>Отсортированный список сотрудников по трём полям</returns>
         internal List<Employee> SortedEmployeesByDepartmentAndAgeAndTotal()
         {
             Employees = (List<Employee>)(from employee in Employees
