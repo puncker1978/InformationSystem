@@ -221,7 +221,7 @@ namespace InformationSystem
         /// <summary>
         /// Метод удаляет сотрудника из списка всех сотрудников
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Имя или фамилия удаляемого сотрудника</param>
         internal void DeleteEmployeeFromXml(string name)
         {
             XDocument xDocEmployee = XDocument.Load("employees.xml");

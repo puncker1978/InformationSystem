@@ -162,9 +162,8 @@ namespace InformationSystem
 
                 switch(choise)
                 {
-                    case "1":
+                    case "1": //Добавление нового отдела
                         {
-                            //Добавление нового отдела
                             {
                                 Organization organization = new Organization();
                                 Console.Write("Введите название нового отдела: ");
@@ -181,9 +180,8 @@ namespace InformationSystem
                             }
                             break;
                         }
-                    case "2":
+                    case "2": //Добавление нового сотрудника
                         {
-                            //Добавление нового сотрудника
                             {
                                 Organization organization = new Organization();
                                 Console.Write("Введите название отдела, в который хотите добавить сотрудника: ");
@@ -213,10 +211,8 @@ namespace InformationSystem
                             }
                             break;
                         }
-                    case "3":
+                    case "3": //Редактирование отдела. Будем менять название отдела. Переименование отдела
                         {
-                            //Редактирование отдела. Будем менять название отдела.
-                            //Переименование отдела
                             {
                                 Organization organization = new Organization();
                                 organization.DepartmentsFromXmlToCollection();//Читаем список всех отделов из xml-файла в коллекцию
@@ -239,9 +235,8 @@ namespace InformationSystem
                             }
                             break;
                         }
-                    case "4":
+                    case "4": //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
                         {
-                            //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
                             {
                                 Organization organization = new Organization();
                                 organization.EmployeesFromXmlToCollection(); //Читаем список всех отделов из xml-файла
@@ -265,9 +260,8 @@ namespace InformationSystem
                             }
                             break;
                         }
-                    case "5":
+                    case "5": //Удаление данных об отделе и всех его сотрудников из соответствующих xml-файлов
                         {
-                            //Удаление данных об отделе и всех его сотрудников из соответствующих xml-файлов
                             {
                                 Organization organization = new Organization();
                                 Console.Write("Введите название отдела, в который хотите удалить: ");
@@ -277,7 +271,6 @@ namespace InformationSystem
                                 Console.ReadKey();
                                 Console.Clear();
                             }
-
                             break;
                         }
                     case "6":
@@ -483,8 +476,12 @@ namespace InformationSystem
 
             //Удаление сотрудника их xml-файла
             {
-
-                //Console.Clear();
+                Organization organization = new Organization();
+                Console.Write("Введите имя или фамилию сотрудника, которого хотите удалить: ");
+                string employeeName = Console.ReadLine();
+                organization.DeleteEmployeeFromXml(employeeName);
+                Console.ReadKey();
+                Console.Clear();
             }
 
 
