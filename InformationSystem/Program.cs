@@ -156,8 +156,159 @@ namespace InformationSystem
                 "8 - поиск отдела\n" +
                 "9 - сортировка сотрудников по полю \"Возраст\"" +
                 "10 - сортировка сотрудников по полям \"Возраст\" и \"Зарплата\"" +
-                "11 - сортировка сотрудников по полям \"Отдел\" \"Возраст\" , \"Зарплата\"");
+                "11 - сортировка сотрудников по полям \"Отдел\" \"Возраст\" , \"Зарплата\"" +
+                "0 - выход");
                 string choise = Console.ReadLine();
+
+                switch(choise)
+                {
+                    case "1":
+                        {
+                            //Добавление нового отдела
+                            {
+                                Organization organization = new Organization();
+                                Console.Write("Введите название нового отдела: ");
+                                string name = Console.ReadLine();
+
+                                //Создаём новый отдел
+                                Department department = new Department(name, DateTime.Now);
+
+                                //Добавляем вновь созданный отдел в xml-файл
+                                organization.AddNewDepartmentToXml(department);
+                                Console.WriteLine(organization);
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            break;
+                        }
+                    case "2":
+                        {
+                            //Добавление нового сотрудника
+                            {
+                                Organization organization = new Organization();
+                                Console.Write("Введите название отдела, в который хотите добавить сотрудника: ");
+                                string departmentName = Console.ReadLine();
+                                Console.WriteLine("Введите данные о новом сотруднике");
+
+                                Console.Write("Фамилия: ");
+                                string secondName = Console.ReadLine();
+
+                                Console.Write("Имя: ");
+                                string firstName = Console.ReadLine();
+
+                                Console.Write("Возраст: ");
+                                int age = Byte.Parse(Console.ReadLine());
+
+                                Console.Write("Количество проектов: ");
+                                int projects = Byte.Parse(Console.ReadLine());
+
+                                //Создаём нового сотрудника
+                                Employee employee = new Employee(secondName, firstName, age, projects);
+
+                                //Добавляем нового сотрудника в существующий отдел в xml-файл
+                                organization.AddNewEmployeeToXml(employee, departmentName);
+
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            break;
+                        }
+                    case "3":
+                        {
+                            //Редактирование отдела. Будем менять название отдела.
+                            //Переименование отдела
+                            {
+                                Organization organization = new Organization();
+                                organization.DepartmentsFromXmlToCollection();//Читаем список всех отделов из xml-файла в коллекцию
+                                Console.WriteLine("Поиск отдела для переименования");
+                                Console.Write("Введите название отдела для переименования: ");
+                                string oldDepartmentName = Console.ReadLine();
+                                if (organization.FindDepartment(oldDepartmentName) != null)
+                                {
+                                    Console.Write("Введите новое название отдела: ");
+                                    string newDepartmentName = Console.ReadLine();
+                                    organization.EditDepartment(oldDepartmentName, newDepartmentName);
+                                    Console.WriteLine("Отдел успешно переименован");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Отдел с названием {oldDepartmentName} не найден");
+                                }
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            break;
+                        }
+                    case "4":
+                        {
+                            //Редактирование сотрудника. Будем менять количество закрепленных за ним проектов
+                            {
+                                Organization organization = new Organization();
+                                organization.EmployeesFromXmlToCollection(); //Читаем список всех отделов из xml-файла
+                                Console.WriteLine("Поиск сотрудника для измения количества проектов");
+                                Console.Write("Введите фамилию или имя сотрудника: ");
+                                string name = Console.ReadLine();
+                                if (organization.FindEmployee(name) != null)
+                                {
+                                    Console.Write("Новое число проектов: ");
+                                    int projects = int.Parse(Console.ReadLine());
+                                    organization.EditEmployee(name, projects);
+                                    Console.WriteLine($"Количество проектов сотрудника {name} изменено");
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Сотрудник с фамилией или именем {name} не найден");
+                                }
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            break;
+                        }
+                    case "5":
+                        {
+                            //Удаление данных об отделе и всех его сотрудников из соответствующих xml-файлов
+                            {
+                                Organization organization = new Organization();
+                                Console.Write("Введите название отдела, в который хотите удалить: ");
+                                string departmentName = Console.ReadLine();
+                                Guid idDepartment = organization.DeleteDepartmentFromXml(departmentName);
+                                organization.DeleteDepartmentEmployees(idDepartment);
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+
+                            break;
+                        }
+                    case "6":
+                        {
+                            break;
+                        }
+                    case "7":
+                        {
+                            break;
+                        }
+                    case "8":
+                        {
+                            break;
+                        }
+                    case "9":
+                        {
+                            break;
+                        }
+                    case "10":
+                        {
+                            break;
+                        }
+                    case "11":
+                        {
+                            break;
+                        }
+                    case "0":
+                        {
+                            break;
+                        }
+                }
             }
             #endregion
 
