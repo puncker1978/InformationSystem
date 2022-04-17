@@ -59,7 +59,8 @@ namespace InformationSystem
 
         #region Конструкторы
         /// <summary>
-        /// Конструктор для создания отдела.
+        /// Конструктор для создания нового отдела.
+        /// Остальные поля (id и contingent заполняются вручную по мере надобности)
         /// </summary>
         /// <param name="departmentName">Название отдела</param>
         /// <param name="creationDate">Дата создания отдела</param>
@@ -70,6 +71,13 @@ namespace InformationSystem
             this.CreationDate = creationDate.Date;
         }
 
+        /// <summary>
+        /// Конструктор для получения данных из xml-файла с целью инициализации коллекции отделов;
+        /// </summary>
+        /// <param name="Id">Уникальный идентификационный номер отдела</param>
+        /// <param name="DepartmentName">Название отдела</param>
+        /// <param name="CreationDate">Дата создания отдела</param>
+        /// <param name="Contingent">Контингент отдела</param>
         internal Department(string Id, string DepartmentName, string CreationDate, string Contingent)
         {
             this.Id = Id;

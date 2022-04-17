@@ -16,7 +16,7 @@ namespace InformationSystem
     {
         #region Специальные методы для работы с xml-файлами
         /// <summary>
-        /// Метод добавления списка сотрудников в xml-файл
+        /// Метод добавления списка сотрудников в xml-файл для заполнения файла тестовыми данными
         /// </summary>
         internal void AddEmployeesToXml()
         {
@@ -37,7 +37,7 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Метод добавления списка отделов в xml-файл
+        /// Метод добавления списка отделов в xml-файл для заполнения файла тестовыми данными
         /// </summary>
         internal void AddDepartmentsToXml()
         {
